@@ -1,0 +1,1902 @@
+[
+  {
+    "conversationId": "20250901001320-20e0b3",
+    "chat_started": "2025-09-01T00:13:20.019097",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901020048-d56489",
+    "chat_started": "2025-09-01T02:00:48.469364",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901025416-583d55",
+    "chat_started": "2025-09-01T02:54:16.708933",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901023833-1fe1e5",
+    "chat_started": "2025-09-01T02:38:33.896450",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901044534-8b9b18",
+    "chat_started": "2025-09-01T04:45:34.108687",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901045717-6acf43",
+    "chat_started": "2025-09-01T04:57:17.497856",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901063151-2d27ba",
+    "chat_started": "2025-09-01T06:31:51.996565",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901064058-3e9c76",
+    "chat_started": "2025-09-01T06:40:58.172232",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901074344-676c12",
+    "chat_started": "2025-09-01T07:43:44.692296",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901054753-b0d454",
+    "chat_started": "2025-09-01T05:47:53.237758",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901061814-433f10",
+    "chat_started": "2025-09-01T06:18:14.612289",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901082406-5098f9",
+    "chat_started": "2025-09-01T08:24:06.028240",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901070451-991dfe",
+    "chat_started": "2025-09-01T07:04:51.577729",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901084613-934894",
+    "chat_started": "2025-09-01T08:46:13.222553",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901073915-ebea8c",
+    "chat_started": "2025-09-01T07:39:15.297303",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901073640-2a41b1",
+    "chat_started": "2025-09-01T07:36:40.885354",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901083658-0acc69",
+    "chat_started": "2025-09-01T08:36:58.653959",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901081346-f4dd7f",
+    "chat_started": "2025-09-01T08:13:46.844021",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903082145-c5c6f6",
+    "chat_started": "2025-09-03T08:21:45.739350",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903072238-71cc54",
+    "chat_started": "2025-09-03T07:22:38.918113",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903090010-0ecae5",
+    "chat_started": "2025-09-03T09:00:10.674518",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903083019-e13112",
+    "chat_started": "2025-09-03T08:30:19.178498",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903091844-ee7c17",
+    "chat_started": "2025-09-03T09:18:44.695646",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903091050-241446",
+    "chat_started": "2025-09-03T09:10:50.260076",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903092301-030dc4",
+    "chat_started": "2025-09-03T09:23:01.107416",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903092605-d0cc29",
+    "chat_started": "2025-09-03T09:26:05.903511",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903100157-938434",
+    "chat_started": "2025-09-03T10:01:57.551381",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903101609-c876b2",
+    "chat_started": "2025-09-03T10:16:09.824980",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903101958-2a8dbc",
+    "chat_started": "2025-09-03T10:19:58.820560",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903101524-aa5a27",
+    "chat_started": "2025-09-03T10:15:24.779693",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903091610-80e1fa",
+    "chat_started": "2025-09-03T09:16:10.207225",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903092228-dd829b",
+    "chat_started": "2025-09-03T09:22:28.710355",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903104630-75fdde",
+    "chat_started": "2025-09-03T10:46:30.268680",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903184011-eb2cbc",
+    "chat_started": "2025-09-03T18:40:11.406782",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904043625-d25bc3",
+    "chat_started": "2025-09-04T04:36:25.547048",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904051256-954b01",
+    "chat_started": "2025-09-04T05:12:56.607726",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250904051851-a52bf0",
+    "chat_started": "2025-09-04T05:18:51.319739",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904051327-8af07a",
+    "chat_started": "2025-09-04T05:13:27.852119",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250904051024-04b26c",
+    "chat_started": "2025-09-04T05:10:24.548310",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904054212-4ad8ad",
+    "chat_started": "2025-09-04T05:42:12.187532",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904045216-5e9a58",
+    "chat_started": "2025-09-04T04:52:16.082333",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904045150-f0ccd4",
+    "chat_started": "2025-09-04T04:51:50.331694",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904035634-3e71c6",
+    "chat_started": "2025-09-04T03:56:34.856707",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904041154-cee426",
+    "chat_started": "2025-09-04T04:11:54.240079",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904041717-3e5769",
+    "chat_started": "2025-09-04T04:17:17.700710",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904041744-c432f9",
+    "chat_started": "2025-09-04T04:17:44.312734",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904054007-4786b6",
+    "chat_started": "2025-09-04T05:40:07.635533",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904053312-f8d953",
+    "chat_started": "2025-09-04T05:33:12.581231",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901130854-e78436",
+    "chat_started": "2025-09-01T13:08:54.432438",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901142130-42113d",
+    "chat_started": "2025-09-01T14:21:30.322725",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901142358-704caa",
+    "chat_started": "2025-09-01T14:23:58.477204",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901112445-9be0fb",
+    "chat_started": "2025-09-01T11:24:45.340774",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901091747-2bcbcb",
+    "chat_started": "2025-09-01T09:17:47.116596",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901112844-8a2d84",
+    "chat_started": "2025-09-01T11:28:44.605215",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901101906-a3dc1e",
+    "chat_started": "2025-09-01T10:19:06.489678",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901112228-4beb17",
+    "chat_started": "2025-09-01T11:22:28.063869",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901113158-a84da7",
+    "chat_started": "2025-09-01T11:31:58.148997",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901095036-82d50f",
+    "chat_started": "2025-09-01T09:50:36.627346",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901110329-1a990e",
+    "chat_started": "2025-09-01T11:03:29.276354",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901102403-be9a4a",
+    "chat_started": "2025-09-01T10:24:03.484584",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901134030-a48f11",
+    "chat_started": "2025-09-01T13:40:30.336105",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901123849-114180",
+    "chat_started": "2025-09-01T12:38:49.534392",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901094954-58c8cd",
+    "chat_started": "2025-09-01T09:49:54.453055",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901104246-c8650f",
+    "chat_started": "2025-09-01T10:42:46.394690",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901103136-0bd202",
+    "chat_started": "2025-09-01T10:31:36.574508",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901095310-7a7921",
+    "chat_started": "2025-09-01T09:53:10.991795",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901084051-61f632",
+    "chat_started": "2025-09-01T08:40:51.546966",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250901121044-e60a43",
+    "chat_started": "2025-09-01T12:10:44.014591",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901143708-58a3b8",
+    "chat_started": "2025-09-01T14:37:08.887178",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901163455-d42240",
+    "chat_started": "2025-09-01T16:34:55.928316",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901170853-cffeaa",
+    "chat_started": "2025-09-01T17:08:53.664562",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901114456-f32e5a",
+    "chat_started": "2025-09-01T11:44:56.893862",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901114329-3185f9",
+    "chat_started": "2025-09-01T11:43:29.949741",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901125417-d5b06c",
+    "chat_started": "2025-09-01T12:54:17.568013",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901091817-c3a26b",
+    "chat_started": "2025-09-01T09:18:17.488863",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901165429-79850c",
+    "chat_started": "2025-09-01T16:54:29.352970",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901180050-5e9487",
+    "chat_started": "2025-09-01T18:00:50.225207",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901165833-82c49f",
+    "chat_started": "2025-09-01T16:58:33.605848",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903130006-ca85dd",
+    "chat_started": "2025-09-03T13:00:06.951340",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903141721-ff44ec",
+    "chat_started": "2025-09-03T14:17:21.845558",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903181145-0d8933",
+    "chat_started": "2025-09-03T18:11:45.683332",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903175400-6d6526",
+    "chat_started": "2025-09-03T17:54:00.498045",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903150632-3dda45",
+    "chat_started": "2025-09-03T15:06:32.816911",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903151523-a9db4c",
+    "chat_started": "2025-09-03T15:15:23.943750",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903154808-d42b65",
+    "chat_started": "2025-09-03T15:48:08.403317",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903162048-67592b",
+    "chat_started": "2025-09-03T16:20:48.030327",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904165926-490358",
+    "chat_started": "2025-09-04T16:59:26.479907",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904175542-bf705c",
+    "chat_started": "2025-09-04T17:55:42.638993",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904184441-6a96d7",
+    "chat_started": "2025-09-04T18:44:41.397340",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904172745-b3b0c7",
+    "chat_started": "2025-09-04T17:27:45.347178",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904172843-51dcaa",
+    "chat_started": "2025-09-04T17:28:43.114078",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904172827-7ae410",
+    "chat_started": "2025-09-04T17:28:27.978830",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904185505-6fdc6a",
+    "chat_started": "2025-09-04T18:55:05.009206",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904191631-d3fde2",
+    "chat_started": "2025-09-04T19:16:31.159974",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905001421-349c44",
+    "chat_started": "2025-09-05T00:14:21.769726",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905030119-0302f5",
+    "chat_started": "2025-09-05T03:01:19.965677",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904185056-491e3e",
+    "chat_started": "2025-09-04T18:50:56.981028",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904202813-ee92c4",
+    "chat_started": "2025-09-04T20:28:13.125470",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905034451-d9bb8b",
+    "chat_started": "2025-09-05T03:44:51.678590",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905041222-9b81eb",
+    "chat_started": "2025-09-05T04:12:22.456003",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905040633-6e0cac",
+    "chat_started": "2025-09-05T04:06:33.585831",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905061410-1bd11f",
+    "chat_started": "2025-09-05T06:14:10.254103",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902092219-5bfbae",
+    "chat_started": "2025-09-02T09:22:19.167837",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902085810-1cf9be",
+    "chat_started": "2025-09-02T08:58:10.368746",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902085836-5f0591",
+    "chat_started": "2025-09-02T08:58:36.151439",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902094817-0250cd",
+    "chat_started": "2025-09-02T09:48:17.805241",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902095917-88e181",
+    "chat_started": "2025-09-02T09:59:17.729748",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902083646-92681f",
+    "chat_started": "2025-09-02T08:36:46.500906",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902101148-a5d94b",
+    "chat_started": "2025-09-02T10:11:48.423809",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902064351-5ef9d2",
+    "chat_started": "2025-09-02T06:43:51.185801",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902071239-5fee25",
+    "chat_started": "2025-09-02T07:12:39.827263",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902075748-35cbf4",
+    "chat_started": "2025-09-02T07:57:48.968231",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902074258-d920a6",
+    "chat_started": "2025-09-02T07:42:58.769797",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902135328-328b23",
+    "chat_started": "2025-09-02T13:53:28.468233",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902154524-668235",
+    "chat_started": "2025-09-02T15:45:24.120870",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902144747-c0110c",
+    "chat_started": "2025-09-02T14:47:47.086953",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902160253-157811",
+    "chat_started": "2025-09-02T16:02:53.361413",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902143337-78ee87",
+    "chat_started": "2025-09-02T14:33:37.969731",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902035856-00c877",
+    "chat_started": "2025-09-02T03:58:56.520964",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902043250-20f3bc",
+    "chat_started": "2025-09-02T04:32:50.402386",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902042447-517a3a",
+    "chat_started": "2025-09-02T04:24:47.163208",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902035402-287fe1",
+    "chat_started": "2025-09-02T03:54:02.821238",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902052419-3791c3",
+    "chat_started": "2025-09-02T05:24:19.838663",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902040941-8a85f2",
+    "chat_started": "2025-09-02T04:09:41.984701",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902051234-4348fd",
+    "chat_started": "2025-09-02T05:12:34.647080",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902045316-69fdb7",
+    "chat_started": "2025-09-02T04:53:16.762237",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902050727-69a2bd",
+    "chat_started": "2025-09-02T05:07:27.829662",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902080630-2905e2",
+    "chat_started": "2025-09-02T08:06:30.595268",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902081045-fd6d8e",
+    "chat_started": "2025-09-02T08:10:45.074371",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902064328-df89d1",
+    "chat_started": "2025-09-02T06:43:28.957229",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902064554-c82ace",
+    "chat_started": "2025-09-02T06:45:54.610909",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902110208-e7f052",
+    "chat_started": "2025-09-02T11:02:08.707361",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903064905-22d7d9",
+    "chat_started": "2025-09-03T06:49:05.201012",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906065640-5b9548",
+    "chat_started": "2025-09-06T06:56:40.991713",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906054222-1b2d13",
+    "chat_started": "2025-09-06T05:42:22.842233",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906073102-06327d",
+    "chat_started": "2025-09-06T07:31:02.154655",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906080619-39e1bb",
+    "chat_started": "2025-09-06T08:06:19.408968",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906080300-11b734",
+    "chat_started": "2025-09-06T08:03:00.715296",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906080226-226894",
+    "chat_started": "2025-09-06T08:02:26.546690",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906062058-5f4924",
+    "chat_started": "2025-09-06T06:20:58.243692",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906072550-893db1",
+    "chat_started": "2025-09-06T07:25:50.189053",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906085017-972d85",
+    "chat_started": "2025-09-06T08:50:17.808874",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906085742-83982b",
+    "chat_started": "2025-09-06T08:57:42.938605",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906074423-ca450b",
+    "chat_started": "2025-09-06T07:44:23.094930",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906091208-bb1283",
+    "chat_started": "2025-09-06T09:12:08.575254",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906095834-1d491d",
+    "chat_started": "2025-09-06T09:58:34.782409",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906084801-02d141",
+    "chat_started": "2025-09-06T08:48:01.429539",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906093142-216238",
+    "chat_started": "2025-09-06T09:31:42.458855",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906111211-fe130d",
+    "chat_started": "2025-09-06T11:12:11.851915",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906112439-295c10",
+    "chat_started": "2025-09-06T11:24:39.809721",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906114322-67cce7",
+    "chat_started": "2025-09-06T11:43:22.854923",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906115743-907a96",
+    "chat_started": "2025-09-06T11:57:43.331651",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906113844-023960",
+    "chat_started": "2025-09-06T11:38:44.595891",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906120035-94b3db",
+    "chat_started": "2025-09-06T12:00:35.022089",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906115229-6ff9d3",
+    "chat_started": "2025-09-06T11:52:29.219265",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906132259-e73abb",
+    "chat_started": "2025-09-06T13:22:59.672555",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906132223-210ebb",
+    "chat_started": "2025-09-06T13:22:23.160946",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906123017-452a95",
+    "chat_started": "2025-09-06T12:30:17.748500",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901133355-b53734",
+    "chat_started": "2025-09-01T13:33:55.979316",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901135534-055714",
+    "chat_started": "2025-09-01T13:55:34.714431",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902105256-ecedb7",
+    "chat_started": "2025-09-02T10:52:56.911661",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902104404-8b2a7f",
+    "chat_started": "2025-09-02T10:44:04.167973",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902102709-7c0091",
+    "chat_started": "2025-09-02T10:27:09.259853",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902104943-40e6d8",
+    "chat_started": "2025-09-02T10:49:43.513392",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902134137-6cd95d",
+    "chat_started": "2025-09-02T13:41:37.369481",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902115544-e12aab",
+    "chat_started": "2025-09-02T11:55:44.444322",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902124343-7ce011",
+    "chat_started": "2025-09-02T12:43:43.248239",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902140932-c0ff90",
+    "chat_started": "2025-09-02T14:09:32.897271",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902125233-4e19fd",
+    "chat_started": "2025-09-02T12:52:33.104699",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902164735-060303",
+    "chat_started": "2025-09-02T16:47:35.163753",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902175907-d06612",
+    "chat_started": "2025-09-02T17:59:07.578833",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902174233-426183",
+    "chat_started": "2025-09-02T17:42:33.202222",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902200844-8b1f65",
+    "chat_started": "2025-09-02T20:08:44.607137",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902190842-f3cf44",
+    "chat_started": "2025-09-02T19:08:42.658024",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902202441-1a1721",
+    "chat_started": "2025-09-02T20:24:41.615348",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902213914-77d9fa",
+    "chat_started": "2025-09-02T21:39:14.002945",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903005455-bada90",
+    "chat_started": "2025-09-03T00:54:55.259691",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903102801-6d2f19",
+    "chat_started": "2025-09-03T10:28:01.751390",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903111240-5255e2",
+    "chat_started": "2025-09-03T11:12:40.245179",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903105029-56ab65",
+    "chat_started": "2025-09-03T10:50:29.540614",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903131029-7946be",
+    "chat_started": "2025-09-03T13:10:29.436914",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902015414-795abf",
+    "chat_started": "2025-09-02T01:54:14.805061",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902030024-c53c27",
+    "chat_started": "2025-09-02T03:00:24.055543",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902042327-2ba092",
+    "chat_started": "2025-09-02T04:23:27.466105",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902044747-d2a830",
+    "chat_started": "2025-09-02T04:47:47.132170",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902060030-129e61",
+    "chat_started": "2025-09-02T06:00:30.873375",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902014707-582fc9",
+    "chat_started": "2025-09-02T01:47:07.148478",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902050739-489ef2",
+    "chat_started": "2025-09-02T05:07:39.845883",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902051102-b36df6",
+    "chat_started": "2025-09-02T05:11:02.473538",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902062705-18e0eb",
+    "chat_started": "2025-09-02T06:27:05.348295",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902110231-4c1dcb",
+    "chat_started": "2025-09-02T11:02:31.345711",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902114544-048923",
+    "chat_started": "2025-09-02T11:45:44.500251",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902130953-3c6cf2",
+    "chat_started": "2025-09-02T13:09:53.873218",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903050133-8617dc",
+    "chat_started": "2025-09-03T05:01:33.180302",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903043238-c0cae4",
+    "chat_started": "2025-09-03T04:32:38.990974",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903044649-d112dc",
+    "chat_started": "2025-09-03T04:46:49.866304",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903050050-05a803",
+    "chat_started": "2025-09-03T05:00:50.177660",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903050352-f14b0a",
+    "chat_started": "2025-09-03T05:03:52.359299",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903050349-1332ef",
+    "chat_started": "2025-09-03T05:03:49.273297",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903034947-88f355",
+    "chat_started": "2025-09-03T03:49:47.008764",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903054523-c29dbd",
+    "chat_started": "2025-09-03T05:45:23.537096",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903054655-d6c5d1",
+    "chat_started": "2025-09-03T05:46:55.153666",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903055830-733b94",
+    "chat_started": "2025-09-03T05:58:30.526007",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903055802-532c04",
+    "chat_started": "2025-09-03T05:58:02.837511",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902103004-eb68a6",
+    "chat_started": "2025-09-02T10:30:04.330762",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902113328-f2c10f",
+    "chat_started": "2025-09-02T11:33:28.773096",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902115223-67481a",
+    "chat_started": "2025-09-02T11:52:23.806702",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902114054-12e558",
+    "chat_started": "2025-09-02T11:40:54.194671",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902122151-094a78",
+    "chat_started": "2025-09-02T12:21:51.285300",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902120411-e8c385",
+    "chat_started": "2025-09-02T12:04:11.003362",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902105256-ba11dd",
+    "chat_started": "2025-09-02T10:52:56.007697",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902122052-53f01e",
+    "chat_started": "2025-09-02T12:20:52.289704",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902111530-a6fc19",
+    "chat_started": "2025-09-02T11:15:30.180095",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902123721-424ef1",
+    "chat_started": "2025-09-02T12:37:21.255159",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902123738-66fd16",
+    "chat_started": "2025-09-02T12:37:38.634005",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901141803-5f769e",
+    "chat_started": "2025-09-01T14:18:03.431790",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901142544-e49872",
+    "chat_started": "2025-09-01T14:25:44.850720",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901160226-3df147",
+    "chat_started": "2025-09-01T16:02:26.422646",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901172014-b6521c",
+    "chat_started": "2025-09-01T17:20:14.257091",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901172901-fe130f",
+    "chat_started": "2025-09-01T17:29:01.294682",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901184207-b596d0",
+    "chat_started": "2025-09-01T18:42:07.093697",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901172344-c28c5a",
+    "chat_started": "2025-09-01T17:23:44.103363",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901185055-bfb793",
+    "chat_started": "2025-09-01T18:50:55.368835",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901185606-787c78",
+    "chat_started": "2025-09-01T18:56:06.364526",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250901184135-f1dc9d",
+    "chat_started": "2025-09-01T18:41:35.563158",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902085852-3df72a",
+    "chat_started": "2025-09-02T08:58:52.255683",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250902124748-3d0665",
+    "chat_started": "2025-09-02T12:47:48.041468",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903061449-6c6576",
+    "chat_started": "2025-09-03T06:14:49.811010",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903060724-34519f",
+    "chat_started": "2025-09-03T06:07:24.919484",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903051206-411aaa",
+    "chat_started": "2025-09-03T05:12:06.266849",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903063245-9277c3",
+    "chat_started": "2025-09-03T06:32:45.052429",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903070143-292e85",
+    "chat_started": "2025-09-03T07:01:43.799574",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903063306-f76a34",
+    "chat_started": "2025-09-03T06:33:06.987639",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903051351-e729a9",
+    "chat_started": "2025-09-03T05:13:51.233634",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903071601-efef5e",
+    "chat_started": "2025-09-03T07:16:01.535481",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903072451-9d8dd6",
+    "chat_started": "2025-09-03T07:24:51.487396",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903071815-d3df3d",
+    "chat_started": "2025-09-03T07:18:15.667261",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903132737-46ebe0",
+    "chat_started": "2025-09-03T13:27:37.472714",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903132715-37e20d",
+    "chat_started": "2025-09-03T13:27:15.043659",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250903134737-41ffa1",
+    "chat_started": "2025-09-03T13:47:37.750329",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907145051-9bb8b0",
+    "chat_started": "2025-09-07T14:50:51.945186",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907142956-9335c5",
+    "chat_started": "2025-09-07T14:29:56.524858",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907142206-1752a4",
+    "chat_started": "2025-09-07T14:22:06.671779",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907165715-af12c4",
+    "chat_started": "2025-09-07T16:57:15.143695",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907152222-b5ec25",
+    "chat_started": "2025-09-07T15:22:22.848542",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907171843-b5297e",
+    "chat_started": "2025-09-07T17:18:43.995167",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907180341-c1b8ac",
+    "chat_started": "2025-09-07T18:03:41.636325",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907182427-6aa445",
+    "chat_started": "2025-09-07T18:24:27.129198",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907172031-e34049",
+    "chat_started": "2025-09-07T17:20:31.735642",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907192904-c385ed",
+    "chat_started": "2025-09-07T19:29:04.794754",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907181009-3110f5",
+    "chat_started": "2025-09-07T18:10:09.464821",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907181143-37e303",
+    "chat_started": "2025-09-07T18:11:43.337179",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907182522-608eec",
+    "chat_started": "2025-09-07T18:25:22.493002",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907190520-d9a622",
+    "chat_started": "2025-09-07T19:05:20.781157",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907210032-ce0520",
+    "chat_started": "2025-09-07T21:00:32.233514",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907222108-434f6a",
+    "chat_started": "2025-09-07T22:21:08.789505",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907231319-99671f",
+    "chat_started": "2025-09-07T23:13:19.667284",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904083039-fccfdb",
+    "chat_started": "2025-09-04T08:30:39.438556",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904074646-dc8d14",
+    "chat_started": "2025-09-04T07:46:46.887768",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904090503-6e8e34",
+    "chat_started": "2025-09-04T09:05:03.639354",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904074422-bd9d6f",
+    "chat_started": "2025-09-04T07:44:22.338403",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904075159-eefc55",
+    "chat_started": "2025-09-04T07:51:59.856904",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904085328-14ddc6",
+    "chat_started": "2025-09-04T08:53:28.338913",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904093557-f97ebc",
+    "chat_started": "2025-09-04T09:35:57.139511",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904105743-bbe4ac",
+    "chat_started": "2025-09-04T10:57:43.795302",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904124554-eaa2c7",
+    "chat_started": "2025-09-04T12:45:54.766375",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904132803-5c9ea5",
+    "chat_started": "2025-09-04T13:28:03.111864",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904121214-e35693",
+    "chat_started": "2025-09-04T12:12:14.365057",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904134136-22a82b",
+    "chat_started": "2025-09-04T13:41:36.157633",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904085335-e76172",
+    "chat_started": "2025-09-04T08:53:35.854424",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904083152-d1962e",
+    "chat_started": "2025-09-04T08:31:52.160598",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904103944-52b82a",
+    "chat_started": "2025-09-04T10:39:44.542760",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904105348-282818",
+    "chat_started": "2025-09-04T10:53:48.452921",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904104553-181543",
+    "chat_started": "2025-09-04T10:45:53.918548",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904071358-177357",
+    "chat_started": "2025-09-04T07:13:58.620946",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904093518-3db3ed",
+    "chat_started": "2025-09-04T09:35:18.347152",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904092514-53c016",
+    "chat_started": "2025-09-04T09:25:14.709720",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904111651-c4d534",
+    "chat_started": "2025-09-04T11:16:51.607927",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904102024-b08358",
+    "chat_started": "2025-09-04T10:20:24.725539",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904101610-be5021",
+    "chat_started": "2025-09-04T10:16:10.202236",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904113115-81a030",
+    "chat_started": "2025-09-04T11:31:15.236749",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904141401-351877",
+    "chat_started": "2025-09-04T14:14:01.296142",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904132831-f9e07e",
+    "chat_started": "2025-09-04T13:28:31.615156",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250904152011-478f4a",
+    "chat_started": "2025-09-04T15:20:11.824398",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905062333-1c063b",
+    "chat_started": "2025-09-05T06:23:33.522573",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905084807-f14d4a",
+    "chat_started": "2025-09-05T08:48:07.931453",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905093022-1621bc",
+    "chat_started": "2025-09-05T09:30:22.674959",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905094014-d18bd6",
+    "chat_started": "2025-09-05T09:40:14.354553",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905093002-c0752a",
+    "chat_started": "2025-09-05T09:30:02.527822",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905084938-9994a2",
+    "chat_started": "2025-09-05T08:49:38.554327",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905101557-1b65d5",
+    "chat_started": "2025-09-05T10:15:57.429358",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905102632-d4c2a0",
+    "chat_started": "2025-09-05T10:26:32.864995",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905112404-b35380",
+    "chat_started": "2025-09-05T11:24:04.758553",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905103426-6304f6",
+    "chat_started": "2025-09-05T10:34:26.854548",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905121559-6d0611",
+    "chat_started": "2025-09-05T12:15:59.624954",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905105858-d09a6e",
+    "chat_started": "2025-09-05T10:58:58.049530",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905111317-c4018c",
+    "chat_started": "2025-09-05T11:13:17.897099",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905112156-4efe44",
+    "chat_started": "2025-09-05T11:21:56.700781",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905113940-dcce00",
+    "chat_started": "2025-09-05T11:39:40.823461",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905125201-7a8ffa",
+    "chat_started": "2025-09-05T12:52:01.837557",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905185816-c286ca",
+    "chat_started": "2025-09-05T18:58:16.758073",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905171929-2b4e86",
+    "chat_started": "2025-09-05T17:19:29.413206",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905181458-d27d35",
+    "chat_started": "2025-09-05T18:14:58.646907",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905190647-8667dd",
+    "chat_started": "2025-09-05T19:06:47.858559",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905190433-093d4b",
+    "chat_started": "2025-09-05T19:04:33.239072",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905210035-08cbbb",
+    "chat_started": "2025-09-05T21:00:35.906505",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905223347-2254d4",
+    "chat_started": "2025-09-05T22:33:47.582920",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905224243-562bb8",
+    "chat_started": "2025-09-05T22:42:43.807770",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905224214-c36ab0",
+    "chat_started": "2025-09-05T22:42:14.879085",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906002850-fac216",
+    "chat_started": "2025-09-06T00:28:50.291441",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250905090956-75a0b8",
+    "chat_started": "2025-09-05T09:09:56.166481",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905085848-9e7f36",
+    "chat_started": "2025-09-05T08:58:48.185114",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905091508-0a2908",
+    "chat_started": "2025-09-05T09:15:08.530527",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905091256-959bf8",
+    "chat_started": "2025-09-05T09:12:56.479395",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905101645-2fece1",
+    "chat_started": "2025-09-05T10:16:45.903361",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905072507-727928",
+    "chat_started": "2025-09-05T07:25:07.955167",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905065808-bd0b42",
+    "chat_started": "2025-09-05T06:58:08.339594",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905094117-003dc9",
+    "chat_started": "2025-09-05T09:41:17.418827",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905094643-7965a0",
+    "chat_started": "2025-09-05T09:46:43.848869",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905094228-9c3622",
+    "chat_started": "2025-09-05T09:42:28.194783",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905110934-ede386",
+    "chat_started": "2025-09-05T11:09:34.181543",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905132955-e7e821",
+    "chat_started": "2025-09-05T13:29:55.602337",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905133418-424f71",
+    "chat_started": "2025-09-05T13:34:18.422190",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905153157-d38884",
+    "chat_started": "2025-09-05T15:31:57.330453",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905154848-5a18f3",
+    "chat_started": "2025-09-05T15:48:48.550066",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905160730-7a143a",
+    "chat_started": "2025-09-05T16:07:30.268100",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250905162530-202319",
+    "chat_started": "2025-09-05T16:25:30.425273",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906005635-40be01",
+    "chat_started": "2025-09-06T00:56:35.793591",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906045504-1732cc",
+    "chat_started": "2025-09-06T04:55:04.784307",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906050238-844c96",
+    "chat_started": "2025-09-06T05:02:38.307515",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906054141-acf813",
+    "chat_started": "2025-09-06T05:41:41.146643",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906131425-a75a96",
+    "chat_started": "2025-09-06T13:14:25.548558",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906164256-4602d7",
+    "chat_started": "2025-09-06T16:42:56.990622",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906164548-1a1189",
+    "chat_started": "2025-09-06T16:45:48.423460",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906172316-1a1b4b",
+    "chat_started": "2025-09-06T17:23:16.635840",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906164415-01b6bd",
+    "chat_started": "2025-09-06T16:44:15.372636",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906132426-b27364",
+    "chat_started": "2025-09-06T13:24:26.610230",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906143011-8cabc6",
+    "chat_started": "2025-09-06T14:30:11.267763",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906150134-5e1c60",
+    "chat_started": "2025-09-06T15:01:34.859374",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906164845-e02c06",
+    "chat_started": "2025-09-06T16:48:45.995076",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906172849-73f95e",
+    "chat_started": "2025-09-06T17:28:49.365443",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906182308-853840",
+    "chat_started": "2025-09-06T18:23:08.830587",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907010358-722c70",
+    "chat_started": "2025-09-07T01:03:58.418104",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906233843-c9b8ce",
+    "chat_started": "2025-09-06T23:38:43.739642",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250906194953-e2a79c",
+    "chat_started": "2025-09-06T19:49:53.372058",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907002652-ba9260",
+    "chat_started": "2025-09-07T00:26:52.442101",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907023620-9c6a5f",
+    "chat_started": "2025-09-07T02:36:20.294859",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907022957-b2348e",
+    "chat_started": "2025-09-07T02:29:57.822171",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250907040532-df1d1d",
+    "chat_started": "2025-09-07T04:05:32.089062",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907060836-4ebf68",
+    "chat_started": "2025-09-07T06:08:36.285864",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907061904-b89dbb",
+    "chat_started": "2025-09-07T06:19:04.848016",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907062035-fa6415",
+    "chat_started": "2025-09-07T06:20:35.755948",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907064256-3f3ff8",
+    "chat_started": "2025-09-07T06:42:56.276874",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907053424-0f7358",
+    "chat_started": "2025-09-07T05:34:24.955402",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907071319-d40622",
+    "chat_started": "2025-09-07T07:13:19.602899",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907054834-2a0536",
+    "chat_started": "2025-09-07T05:48:34.144836",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907062957-bdd6f7",
+    "chat_started": "2025-09-07T06:29:57.884568",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907081815-5ebe8a",
+    "chat_started": "2025-09-07T08:18:15.974469",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907081335-e14300",
+    "chat_started": "2025-09-07T08:13:35.107695",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907090856-ef6ed3",
+    "chat_started": "2025-09-07T09:08:56.429389",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907093525-49ab3f",
+    "chat_started": "2025-09-07T09:35:25.327733",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907092155-9ae1e2",
+    "chat_started": "2025-09-07T09:21:55.762294",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907094639-e05561",
+    "chat_started": "2025-09-07T09:46:39.066780",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907091108-72d823",
+    "chat_started": "2025-09-07T09:11:08.498468",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907100637-667e0a",
+    "chat_started": "2025-09-07T10:06:37.387701",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907103124-d6e4a1",
+    "chat_started": "2025-09-07T10:31:24.768131",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907103000-48a56f",
+    "chat_started": "2025-09-07T10:30:00.488306",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907105913-e5c2b3",
+    "chat_started": "2025-09-07T10:59:13.802698",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907110132-ecc6d2",
+    "chat_started": "2025-09-07T11:01:32.313236",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907110344-20e784",
+    "chat_started": "2025-09-07T11:03:44.727458",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907105846-f58152",
+    "chat_started": "2025-09-07T10:58:46.685312",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907111919-15292d",
+    "chat_started": "2025-09-07T11:19:19.686008",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907115628-a5adfe",
+    "chat_started": "2025-09-07T11:56:28.158070",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907113739-991023",
+    "chat_started": "2025-09-07T11:37:39.157764",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907131808-455cd2",
+    "chat_started": "2025-09-07T13:18:08.701695",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907133909-a625eb",
+    "chat_started": "2025-09-07T13:39:09.431281",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907133507-b74383",
+    "chat_started": "2025-09-07T13:35:07.138768",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907133132-2b2268",
+    "chat_started": "2025-09-07T13:31:32.873976",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907134249-5e3e88",
+    "chat_started": "2025-09-07T13:42:49.097605",
+    "is_utm_user": "regular"
+  },
+  {
+    "conversationId": "20250907123603-57b138",
+    "chat_started": "2025-09-07T12:36:03.708233",
+    "is_utm_user": "regular"
+  }
+]

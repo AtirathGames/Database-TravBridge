@@ -1,0 +1,174 @@
+/* Root page layout */
+.home-page {
+  min-height: 100vh;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  color: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+
+/* Theme backgrounds */
+.home-page.tcil {
+  background-color: #0056b3;
+}
+
+.home-page.sotc {
+  background-color: #333333;
+}
+
+/* Header row */
+.home-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-title {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+/* Logout button */
+.logout-button {
+  padding: 10px 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+.logout-button:hover {
+  opacity: 0.9;
+}
+
+/* Toggle section */
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 12px;
+}
+
+.toggle-label {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  border-radius: 34px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+/* Theme colors for toggle */
+.toggle-switch.tcil {
+  background-color: #00398c;
+}
+
+.toggle-switch.sotc {
+  background-color: #ed1c24;
+}
+
+.toggle-circle {
+  position: absolute;
+  top: 4px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+  left: 4px;
+}
+
+/* Position of circle depending on state */
+.toggle-circle.right {
+  left: 30px;
+}
+
+/* Content section */
+.home-section {
+  margin-bottom: 60px;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Buttons */
+.home-button {
+  height: 130px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  color: #f5f5f5;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.2); /* base, overridden by theme below */
+}
+
+/* Theme button backgrounds */
+.home-page.tcil .home-button {
+  background-color: rgba(0, 68, 163, 0.85);
+}
+
+.home-page.sotc .home-button {
+  background-color: rgba(237, 28, 36, 0.85);
+}
+
+/* Hover states */
+.home-button:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.home-page.tcil .home-button:hover {
+  background-color: #00398c;
+}
+
+.home-page.sotc .home-button:hover {
+  background-color: #cc0000;
+}
+
+/* Icon inside buttons */
+.home-button-icon {
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Slight zoom on hover */
+.home-button:hover .home-button-icon {
+  transform: scale(1.1);
+}
+
+.home-button-label {
+  text-align: center;
+}

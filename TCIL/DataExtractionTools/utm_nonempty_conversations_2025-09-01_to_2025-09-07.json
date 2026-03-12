@@ -1,0 +1,27 @@
+[
+  {
+    "conversationId": "20250904051256-954b01",
+    "chat_started": "2025-09-04T05:12:56.607726",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250904051327-8af07a",
+    "chat_started": "2025-09-04T05:13:27.852119",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250901084051-61f632",
+    "chat_started": "2025-09-01T08:40:51.546966",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250906002850-fac216",
+    "chat_started": "2025-09-06T00:28:50.291441",
+    "is_utm_user": "utm"
+  },
+  {
+    "conversationId": "20250907022957-b2348e",
+    "chat_started": "2025-09-07T02:29:57.822171",
+    "is_utm_user": "utm"
+  }
+]

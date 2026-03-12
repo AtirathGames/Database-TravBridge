@@ -1,0 +1,51 @@
+{
+  "2025-09-03": {
+    "total_conversations": 115,
+    "regular_total": 30,
+    "utm_total": 85,
+    "regular_with_opportunity": 1,
+    "utm_with_opportunity": 0
+  },
+  "2025-09-02": {
+    "total_conversations": 518,
+    "regular_total": 158,
+    "utm_total": 360,
+    "regular_with_opportunity": 9,
+    "utm_with_opportunity": 0
+  },
+  "2025-09-01": {
+    "total_conversations": 518,
+    "regular_total": 151,
+    "utm_total": 367,
+    "regular_with_opportunity": 6,
+    "utm_with_opportunity": 0
+  },
+  "2025-08-31": {
+    "total_conversations": 475,
+    "regular_total": 107,
+    "utm_total": 368,
+    "regular_with_opportunity": 3,
+    "utm_with_opportunity": 0
+  },
+  "2025-08-30": {
+    "total_conversations": 469,
+    "regular_total": 100,
+    "utm_total": 369,
+    "regular_with_opportunity": 4,
+    "utm_with_opportunity": 0
+  },
+  "2025-08-29": {
+    "total_conversations": 473,
+    "regular_total": 121,
+    "utm_total": 352,
+    "regular_with_opportunity": 6,
+    "utm_with_opportunity": 0
+  },
+  "2025-08-28": {
+    "total_conversations": 432,
+    "regular_total": 123,
+    "utm_total": 309,
+    "regular_with_opportunity": 13,
+    "utm_with_opportunity": 0
+  }
+}

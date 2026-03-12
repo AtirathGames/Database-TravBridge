@@ -1,0 +1,53 @@
+{
+  "name": "conversation-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.13.2",
+    "cross-env": "^10.1.0",
+    "lucide-react": "^0.553.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.11.0",
+    "react-router": "^6.28.0",
+    "react-router-dom": "^6.28.0",
+    "recharts": "^3.3.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "npm run start:nix",
+    "start:win": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts start",
+    "start:nix": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "npm run build:nix",
+    "build:win": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts build",
+    "build:nix": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1",
+    "serve": "^14.2.5"
+  }
+}

@@ -1,0 +1,550 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.loginform-outerbg {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url("../Assets/Login/Sign_Up_BG.png"); */
+    background-image: url("../Assets/Login/Sign_Up_BG.png");
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center; 
+}
+.loginform-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+.loginform-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 2rem 2rem; 
+}
+
+
+form {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+.logo-desktop {
+  display: flex;
+}
+.logo-mobile {
+  display: none;
+}
+
+
+form h3 {
+  text-align: center;
+  color: #000;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+  overflow: hidden;
+  color: #000;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.input-group {
+  margin-bottom: 0.8rem; 
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #878787;
+  background: #fff;
+  outline: none;
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+}
+
+
+.password-wrapper {
+  position: relative;
+}
+
+
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.login-continue-button {
+  width: 100%;
+  display: flex;
+  height: 37px;
+  padding: 7px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #0056b3;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border: none;
+}
+.login-continue-button:focus {
+  border: none;
+}
+.login-continue-button:hover {
+  border-radius: 8px;
+  background: #0056b3;
+}
+
+
+
+
+
+
+
+
+.continue-button {
+  width: 100%;
+  display: flex;
+  height: 37px;
+  padding: 7px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #0056b3;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.continue-button:focus {
+  border: none;
+}
+.continue-button:hover {
+  color: #000;
+}
+.login {
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.login:hover {
+  color: #000;
+}
+
+
+.forgotpassword {
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0.8rem 0;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+}
+
+.google-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.5rem;
+}
+
+
+.sign-up-text {
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 450px) {
+  .loginform-overlay{
+    padding: 30px;
+  }
+  .loginform-container {
+    padding: 1rem; 
+    margin: 0.5rem;
+  }
+
+  .logo-desktop {
+    display: none;
+  }
+  .logo-mobile {
+    display: flex;
+  }
+
+  form h3 {
+    font-size: 1.3rem; 
+    margin-bottom: 0.8rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.6rem;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .input-group input {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .continue-button,
+  .google-button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .forgotpassword,
+  .sign-up-text {
+    font-size: 0.8rem;
+  }
+
+  .divider {
+    margin: 0.6rem 0;
+  }
+}
+
+
+
+
+
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+.loginform-outerbg {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ 
+  background-image: url("../Assets/Login/Sign_Up_BG.png");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+}
+
+
+.loginform-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+}
+
+
+.loginform-container {
+  position: relative;
+  z-index: 1; 
+  width: 90%;
+  max-width: 500px;
+  background-color: #fff;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 2.4rem; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+.logo-desktop {
+  display: flex;
+}
+.logo-mobile {
+  display: none;
+}
+
+
+.travbridge-logo {
+  max-width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+form h3 {
+  text-align: center;
+  color: #000;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+  overflow: hidden;
+  color: #000;
+  text-align: center;
+  text-overflow: ellipsis;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+
+.input-group {
+  margin-bottom: 0.8rem; 
+  width: 100%;
+}
+
+
+.input-group label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+
+.input-group input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #878787;
+  background: #fff;
+  outline: none;
+}
+
+
+.error-message {
+  color: red;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+}
+
+
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+
+.continue-button {
+  width: 100%;
+  display: flex;
+  height: 37px;
+  padding: 7px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #0056b3;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.continue-button:focus {
+  border: none;
+}
+.continue-button:hover {
+  color: #000;
+}
+.login {
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.login:hover {
+  color: #000; 
+}
+
+
+
+.forgotpassword {
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+
+.divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0.8rem 0;
+}
+
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+}
+
+.google-icon {
+  width: 22px;
+  height: 22px;
+  margin-right: 0.5rem;
+}
+
+
+.sign-up-text {
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 450px) {
+  .loginform-container {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .logo-desktop {
+    display: none;
+  }
+  .logo-mobile {
+    display: flex;
+  }
+
+  form h3 {
+    font-size: 1.3rem; 
+    margin-bottom: 0.8rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.6rem;
+  }
+
+  .input-group label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .input-group input {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .continue-button,
+  .google-button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .forgotpassword,
+  .sign-up-text {
+    font-size: 0.8rem;
+  }
+
+  .divider {
+    margin: 0.6rem 0;
+  }
+} */

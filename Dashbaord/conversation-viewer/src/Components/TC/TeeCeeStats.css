@@ -1,0 +1,9 @@
+.teecee-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0056b3; /* TCIL blue */
+}
+
+.teecee-main {
+  flex: 1;
+}

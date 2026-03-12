@@ -1,0 +1,230 @@
+
+===== 2025-09-03 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 118
+Regular total                  | 33
+UTM total                      | 85
+Regular with opportunity       | 1
+UTM with opportunity           | 0
+
+
+===== 2025-09-02 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 518
+Regular total                  | 158
+UTM total                      | 360
+Regular with opportunity       | 9
+UTM with opportunity           | 0
+
+
+===== 2025-09-01 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 518
+Regular total                  | 151
+UTM total                      | 367
+Regular with opportunity       | 6
+UTM with opportunity           | 0
+
+
+===== 2025-08-31 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 475
+Regular total                  | 107
+UTM total                      | 368
+Regular with opportunity       | 3
+UTM with opportunity           | 0
+
+
+===== 2025-08-30 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 469
+Regular total                  | 100
+UTM total                      | 369
+Regular with opportunity       | 4
+UTM with opportunity           | 0
+
+
+===== 2025-08-29 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 473
+Regular total                  | 121
+UTM total                      | 352
+Regular with opportunity       | 6
+UTM with opportunity           | 0
+
+
+===== 2025-08-28 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 461
+Regular total                  | 123
+UTM total                      | 338
+Regular with opportunity       | 13
+UTM with opportunity           | 0
+
+
+===== 2025-08-27 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 522
+Regular total                  | 157
+UTM total                      | 365
+Regular with opportunity       | 7
+UTM with opportunity           | 0
+
+
+===== 2025-08-26 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 488
+Regular total                  | 143
+UTM total                      | 345
+Regular with opportunity       | 6
+UTM with opportunity           | 0
+
+
+===== 2025-08-25 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 485
+Regular total                  | 157
+UTM total                      | 328
+Regular with opportunity       | 10
+UTM with opportunity           | 0
+
+
+===== 2025-08-24 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 444
+Regular total                  | 111
+UTM total                      | 333
+Regular with opportunity       | 4
+UTM with opportunity           | 0
+
+
+===== 2025-08-23 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 515
+Regular total                  | 135
+UTM total                      | 380
+Regular with opportunity       | 7
+UTM with opportunity           | 0
+
+
+===== 2025-08-22 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 471
+Regular total                  | 157
+UTM total                      | 314
+Regular with opportunity       | 3
+UTM with opportunity           | 0
+
+
+===== 2025-08-21 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 411
+Regular total                  | 107
+UTM total                      | 304
+Regular with opportunity       | 6
+UTM with opportunity           | 0
+
+
+===== 2025-08-20 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 462
+Regular total                  | 114
+UTM total                      | 348
+Regular with opportunity       | 6
+UTM with opportunity           | 0
+
+
+===== 2025-08-19 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 441
+Regular total                  | 153
+UTM total                      | 288
+Regular with opportunity       | 7
+UTM with opportunity           | 0
+
+
+===== 2025-08-18 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 491
+Regular total                  | 135
+UTM total                      | 356
+Regular with opportunity       | 1
+UTM with opportunity           | 0
+
+
+===== 2025-08-17 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 395
+Regular total                  | 94
+UTM total                      | 301
+Regular with opportunity       | 7
+UTM with opportunity           | 0
+
+
+===== 2025-08-16 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 464
+Regular total                  | 137
+UTM total                      | 327
+Regular with opportunity       | 5
+UTM with opportunity           | 0
+
+
+===== 2025-08-15 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 412
+Regular total                  | 144
+UTM total                      | 268
+Regular with opportunity       | 5
+UTM with opportunity           | 0
+
+
+===== 2025-08-14 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 376
+Regular total                  | 121
+UTM total                      | 255
+Regular with opportunity       | 4
+UTM with opportunity           | 0
+
+
+===== 2025-08-13 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 386
+Regular total                  | 148
+UTM total                      | 238
+Regular with opportunity       | 3
+UTM with opportunity           | 0
+
+
+===== 2025-08-12 =====
+Metric                         | Count
+---------------------------------------------
+Total conversations            | 205
+Regular total                  | 58
+UTM total                      | 147
+Regular with opportunity       | 1
+UTM with opportunity           | 0
+

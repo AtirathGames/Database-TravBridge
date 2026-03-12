@@ -1,0 +1,80 @@
+{
+  "2025-09-24": [
+    {
+      "conversationId": "20250924034222-51d3a2",
+      "opportunity_id": "",
+      "agent_id": "USR-8AE9442B",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-23": [
+    {
+      "conversationId": "20250923110619-b3843f",
+      "opportunity_id": "",
+      "agent_id": "USR-A51E6465",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-19": [
+    {
+      "conversationId": "20250919100830-0900b9",
+      "opportunity_id": "",
+      "agent_id": "USR-97598496",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-04": [
+    {
+      "conversationId": "20250904111501-04b7b6",
+      "opportunity_id": "",
+      "agent_id": "USR-97598496",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    },
+    {
+      "conversationId": "20250904112752-407915",
+      "opportunity_id": "",
+      "agent_id": "USR-A0B2E0A7",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-03": [
+    {
+      "conversationId": "20250903105043-6e7eec",
+      "opportunity_id": "",
+      "agent_id": "USR-97598496",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-02": [
+    {
+      "conversationId": "20250902063328-01efa0",
+      "opportunity_id": "",
+      "agent_id": "USR-9DB4C713",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ],
+  "2025-09-01": [
+    {
+      "conversationId": "20250901123730-b9c3f8",
+      "opportunity_id": "",
+      "agent_id": "USR-9DB4C713",
+      "agent_name": null,
+      "chat_channel": "ChatBot",
+      "session_status": "with_agent"
+    }
+  ]
+}

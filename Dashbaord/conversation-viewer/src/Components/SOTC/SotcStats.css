@@ -1,0 +1,9 @@
+.sotc-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: #ed1c24d9; /* SOTC red with alpha */
+}
+
+.sotc-main {
+  flex: 1;
+}
