@@ -32,11 +32,11 @@ def determine_flight_included_from_logic(
     pkg_subtype_id: int,
     is_flight_included: str,
     product_id: int,
-    holiday_plus_subtype: int
+    holiday_plus_subtype: int,
 ):
     """
     Determine if flights are included using the same logic as generate_flights_availability_description.
-    
+
     Returns:
         True: Flights included in package price
         False: Flights not included (book separately)
@@ -49,7 +49,7 @@ def determine_flight_included_from_logic(
             return True
         else:
             return False
-    
+
     # FIT packages with Holiday+
     elif pkg_subtype_name == "FIT" and product_id == 11:
         if holiday_plus_subtype == 1:
@@ -58,14 +58,14 @@ def determine_flight_included_from_logic(
             return "optional"  # Flights Optional
         else:
             return None  # Unclear
-    
+
     # Standard FIT packages
     elif pkg_subtype_name == "FIT":
         if is_flight_included == "Y":
             return True
         else:
             return False
-    
+
     # Default case
     else:
         if is_flight_included == "Y":
@@ -85,12 +85,12 @@ def extract_service_slots_with_llm(
     is_flight_included: str,
     product_id: int,
     holiday_plus_subtype: int,
-    package_id: str = "Unknown"
+    package_id: str = "Unknown",
 ):
     """
     Extract service-level boolean slots using the same LLM as summary generation.
     Uses existing logic for flight_included instead of LLM extraction.
-    
+
     Returns:
         dict: Service slots with all 11 attributes or None if extraction fails
     """
@@ -101,24 +101,28 @@ def extract_service_slots_with_llm(
             pkg_subtype_id=pkg_subtype_id,
             is_flight_included=is_flight_included,
             product_id=product_id,
-            holiday_plus_subtype=holiday_plus_subtype
+            holiday_plus_subtype=holiday_plus_subtype,
         )
-        
+
         # Clean and truncate source fields for LLM
         def clean_for_llm(text, max_length=800):
             if not text:
                 return ""
             cleaned = clean_text(remove_html_tags(str(text)))
             return cleaned[:max_length]
-        
+
         inclusions_clean = clean_for_llm(inclusions, max_length=800)
         exclusions_clean = clean_for_llm(exclusions, max_length=600)
         meals_str = str(meals)[:300]
         visa_str = str(visa)[:300]
-        
+
         # Determine package type
-        package_type = "domestic" if (len(visiting_countries) == 1 and visiting_countries[0] == "India") else "international"
-        
+        package_type = (
+            "domestic"
+            if (len(visiting_countries) == 1 and visiting_countries[0] == "India")
+            else "international"
+        )
+
         # Construct prompt for service slot extraction (10 slots - excluding flight_included)
         prompt = f"""Extract service-level boolean attributes from this travel package.
 
@@ -163,17 +167,24 @@ Return ONLY the JSON object."""
             "messages": [{"role": "user", "content": prompt}],
             "stream": False,
             "temperature": 0.1,
-            "response_format": {"type": "json_object"}
+            "response_format": {"type": "json_object"},
         }
-        
+
         response = requests.post(SUMMARY_API_URL, json=payload, timeout=30)
-        
+
         if response.status_code != 200:
-            logging.warning(f"Service slot extraction failed for {package_id}: HTTP {response.status_code}")
+            logging.warning(
+                f"Service slot extraction failed for {package_id}: HTTP {response.status_code}"
+            )
             return None
-        
-        content = response.json().get("choices", [{}])[0].get("message", {}).get("content", "")
-        
+
+        content = (
+            response.json()
+            .get("choices", [{}])[0]
+            .get("message", {})
+            .get("content", "")
+        )
+
         # Parse JSON response
         content_clean = content.strip()
         if content_clean.startswith("```json"):
@@ -183,15 +194,17 @@ Return ONLY the JSON object."""
         if content_clean.endswith("```"):
             content_clean = content_clean[:-3]
         content_clean = content_clean.strip()
-        
+
         service_slots = json.loads(content_clean)
-        
+
         # Add flight_included from logic-based determination
         service_slots["flight_included"] = flight_included
-        
-        logging.info(f"✅ Successfully extracted service slots for {package_id} (flight_included from logic: {flight_included})")
+
+        logging.info(
+            f"✅ Successfully extracted service slots for {package_id} (flight_included from logic: {flight_included})"
+        )
         return service_slots
-        
+
     except Exception as e:
         logging.warning(f"Error extracting service slots for {package_id}: {str(e)}")
         return None
@@ -210,8 +223,7 @@ SIGHTSEEING_SKIP_PHRASES = {"sightseeing as per itinerary"}
 
 
 def extract_sightseeing_types_with_llm(
-    sightseeing: list,
-    package_id: str = "Unknown"
+    sightseeing: list, package_id: str = "Unknown"
 ) -> list:
     """
     Classify the sightseeing activities of a package into one or more predefined
@@ -243,7 +255,9 @@ def extract_sightseeing_types_with_llm(
         if not valid_entries:
             return []
 
-        sightseeing_text = "\n".join(valid_entries)[:1500]  # cap to avoid token overflow
+        sightseeing_text = "\n".join(valid_entries)[
+            :1500
+        ]  # cap to avoid token overflow
 
         categories_str = "\n".join(f"- {c}" for c in SIGHTSEEING_CATEGORIES)
 
@@ -278,10 +292,17 @@ Output:"""
         response = requests.post(SUMMARY_API_URL, json=payload, timeout=30)
 
         if response.status_code != 200:
-            logging.warning(f"Sightseeing type extraction failed for {package_id}: HTTP {response.status_code}")
+            logging.warning(
+                f"Sightseeing type extraction failed for {package_id}: HTTP {response.status_code}"
+            )
             return []
 
-        content = response.json().get("choices", [{}])[0].get("message", {}).get("content", "")
+        content = (
+            response.json()
+            .get("choices", [{}])[0]
+            .get("message", {})
+            .get("content", "")
+        )
 
         content_clean = content.strip()
         if content_clean.startswith("```json"):
@@ -309,7 +330,9 @@ Output:"""
         return valid_categories
 
     except Exception as e:
-        logging.warning(f"Error extracting sightseeing types for {package_id}: {str(e)}")
+        logging.warning(
+            f"Error extracting sightseeing types for {package_id}: {str(e)}"
+        )
         return []
 
 
@@ -587,12 +610,14 @@ def extract_continent_info(city_collection):
         continent_name = continent.get("continentName")
         if country_code and country_code not in seen_codes:
             seen_codes.add(country_code)
-            result.append({
-                "continentId": continent_id,
-                "continentName": continent_name,
-                "countryCode": country_code,
-                "countryName": country_name,
-            })
+            result.append(
+                {
+                    "continentId": continent_id,
+                    "continentName": continent_name,
+                    "countryCode": country_code,
+                    "countryName": country_name,
+                }
+            )
     return result
 
 
@@ -706,9 +731,9 @@ def process_pdp_package_response(item, do_generate_summary: bool = True):
         packageId = packageDetail.get("packageId")
         packageName = packageDetail.get("pkgName")
         pkgSubtypeId = packageDetail.get("pkgSubtypeId", {})
-        isFlightIncluded = packageDetail.get("isFlightIncluded")  
+        isFlightIncluded = packageDetail.get("isFlightIncluded")
         holidayPlusSubType = packageDetail.get("holidayPlusSubType")
-        productId = packageDetail.get("productId") 
+        productId = packageDetail.get("productId")
         pkgSubtypeId_value = pkgSubtypeId.get("pkgSubtypeId")
         pkgSubtypeName = pkgSubtypeId.get("pkgSubtypeName")
         pkgTypeId = pkgSubtypeId.get("pkgTypeId")
@@ -837,25 +862,32 @@ def process_pdp_package_response(item, do_generate_summary: bool = True):
         )
 
         # Extract service slots (Phase 1: 8 slots)
-        service_slots = extract_service_slots_with_llm(
-            inclusions=inclusions,
-            exclusions=exclusions,
-            meals=mealsDetails,
-            visa=visa_data,
-            visiting_countries=list(unique_countries),
-            pkg_subtype_name=pkgSubtypeName,
-            pkg_subtype_id=pkgSubtypeId_value,
-            is_flight_included=isFlightIncluded,
-            product_id=productId,
-            holiday_plus_subtype=holidayPlusSubType,
-            package_id=packageId
-        ) if do_generate_summary else None  # Only extract if summary generation is enabled
+        service_slots = (
+            extract_service_slots_with_llm(
+                inclusions=inclusions,
+                exclusions=exclusions,
+                meals=mealsDetails,
+                visa=visa_data,
+                visiting_countries=list(unique_countries),
+                pkg_subtype_name=pkgSubtypeName,
+                pkg_subtype_id=pkgSubtypeId_value,
+                is_flight_included=isFlightIncluded,
+                product_id=productId,
+                holiday_plus_subtype=holidayPlusSubType,
+                package_id=packageId,
+            )
+            if do_generate_summary
+            else None
+        )  # Only extract if summary generation is enabled
 
         # Extract sightseeing types
-        sightseeing_types = extract_sightseeing_types_with_llm(
-            sightseeing=sightseeing,
-            package_id=packageId
-        ) if do_generate_summary else []
+        sightseeing_types = (
+            extract_sightseeing_types_with_llm(
+                sightseeing=sightseeing, package_id=packageId
+            )
+            if do_generate_summary
+            else []
+        )
 
         return {
             "packageId": packageId,

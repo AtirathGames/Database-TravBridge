@@ -27,7 +27,14 @@ from models import (
     AutoBudgetRequest,
     DepartureCity,
 )
-from constants import TCIL_PACKAGE_INDEX, TCIL_RAW_INDEX, es, TOKEN_TTL, GEOCODE_TTL_SECONDS, geolocator
+from constants import (
+    TCIL_PACKAGE_INDEX,
+    TCIL_RAW_INDEX,
+    es,
+    TOKEN_TTL,
+    GEOCODE_TTL_SECONDS,
+    geolocator,
+)
 from services import (
     ensure_index_exists,
     index_package_in_es,
@@ -60,7 +67,12 @@ router = APIRouter()
 @router.post("/v1/search_by_package_id", response_model=ItemOut)
 async def search_item_by_package_id(
     body: Dict[str, Union[str, Optional[str], Optional[bool]]] = Body(
-        ..., example={"packageId": "12345", "departureCity": "Mumbai", "fareCalendar": False}
+        ...,
+        example={
+            "packageId": "12345",
+            "departureCity": "Mumbai",
+            "fareCalendar": False,
+        },
     )
 ) -> ItemOut:
     """
@@ -80,7 +92,9 @@ async def search_item_by_package_id(
 
         package_id = body.get("packageId")
         departure_city = body.get("departureCity")  # Optional field
-        include_fare_calendar = body.get("fareCalendar", False)  # Optional field, default False
+        include_fare_calendar = body.get(
+            "fareCalendar", False
+        )  # Optional field, default False
 
         if not package_id:
             raise HTTPException(
@@ -109,7 +123,9 @@ async def search_item_by_package_id(
             pdp_result = fetch_package_dynamically(
                 package_id, do_generate_summary=generate_summary
             )
-            package_data = pdp_result.get("processed") if isinstance(pdp_result, dict) else None
+            package_data = (
+                pdp_result.get("processed") if isinstance(pdp_result, dict) else None
+            )
             if not package_data:
                 raise HTTPException(
                     status_code=404, detail="Package not found even in PDP source"
@@ -121,16 +137,16 @@ async def search_item_by_package_id(
             pdp_itinerary = package_data.get(
                 "packageItinerary", {"summary": "", "itinerary": []}
             )
-            
+
             # Generate flights availability description for PDP data
             flights_availability_pdp = generate_flights_availability_description(
                 pkg_subtype_name=package_data.get("pkgSubtypeName", ""),
                 pkg_subtype_id=package_data.get("pkgSubtypeId", 0),
                 is_flight_included=package_data.get("isFlightIncluded", "N"),
                 product_id=package_data.get("productId", 0),
-                holiday_plus_subtype=package_data.get("holidayPlusSubType", -1)
+                holiday_plus_subtype=package_data.get("holidayPlusSubType", -1),
             )
-            
+
             item_out_pdp = ItemOut(
                 id=package_data["packageId"],
                 itinerary_data=savedItineraryData(
@@ -195,11 +211,11 @@ async def search_item_by_package_id(
                     flightsAvailability=flights_availability_pdp,
                     constructed_thumbnailImage=(
                         f"{RESOURCES_URL}{package_data['packageId']}/{package_data.get('thumbnailImage', '')}"
-                        if package_data.get("thumbnailImage") else ""
+                        if package_data.get("thumbnailImage")
+                        else ""
                     ),
                     constructed_images=_generate_image_urls(
-                        package_data["packageId"],
-                        package_data.get("images") or []
+                        package_data["packageId"], package_data.get("images") or []
                     ),
                 ),
                 score=1.0,
@@ -221,11 +237,13 @@ async def search_item_by_package_id(
                         )
                         for city in package_data.get("departureCities", [])
                     ],
-                    departure_city_filter=departure_city  # Only fetch for specified city
+                    departure_city_filter=departure_city,  # Only fetch for specified city
                 )
                 if fare_calendar_data:
                     item_out_pdp.fareCalendar = fare_calendar_data
-                    logging.info(f"Fare calendar fetched successfully for PDP {package_id}")
+                    logging.info(
+                        f"Fare calendar fetched successfully for PDP {package_id}"
+                    )
 
             return item_out_pdp
 
@@ -272,7 +290,7 @@ async def search_item_by_package_id(
             pkg_subtype_id=source.get("pkgSubtypeId", 0),
             is_flight_included=source.get("isFlightIncluded", "N"),
             product_id=source.get("productId", 0),
-            holiday_plus_subtype=source.get("holidayPlusSubType", -1)
+            holiday_plus_subtype=source.get("holidayPlusSubType", -1),
         )
 
         item_out = ItemOut(
@@ -335,11 +353,11 @@ async def search_item_by_package_id(
                 flightsAvailability=flights_availability,
                 constructed_thumbnailImage=(
                     f"{RESOURCES_URL}{source['packageId']}/{source.get('thumbnailImage', '')}"
-                    if source.get("thumbnailImage") else ""
+                    if source.get("thumbnailImage")
+                    else ""
                 ),
                 constructed_images=_generate_image_urls(
-                    source["packageId"],
-                    source.get("images") or []
+                    source["packageId"], source.get("images") or []
                 ),
             ),
             score=hits[0]["_score"],
@@ -362,7 +380,7 @@ async def search_item_by_package_id(
                     )
                     for city in source.get("departureCities", [])
                 ],
-                departure_city_filter=departure_city  # Only fetch for specified city
+                departure_city_filter=departure_city,  # Only fetch for specified city
             )
             if fare_calendar_data:
                 item_out.fareCalendar = fare_calendar_data
@@ -386,7 +404,9 @@ async def search_item_by_package_id(
 
 @router.post("/v1/search_by_package_name", response_model=List[ItemOut])
 async def search_by_package_name(
-    body: Dict[str, Union[str, bool]] = Body(..., example={"packageName": "", "departureCity": "", "fareCalendar": False})
+    body: Dict[str, Union[str, bool]] = Body(
+        ..., example={"packageName": "", "departureCity": "", "fareCalendar": False}
+    )
 ):
     """
     Search for packages by the given text in the packageName and cities.cityName fields.
@@ -398,7 +418,7 @@ async def search_by_package_name(
         packageName = body.get("packageName")
         departure_city = body.get("departureCity")  # Optional field
         include_fare_calendar = body.get("fareCalendar", False)
-        
+
         if not packageName:
             raise HTTPException(
                 status_code=400, detail="packageName is required in the request body."
@@ -412,12 +432,12 @@ async def search_by_package_name(
                 "bool": {
                     "should": [
                         {"match": {"packageName": packageName}},
-                        {"match": {"cities.cityName": packageName}}
+                        {"match": {"cities.cityName": packageName}},
                     ],
-                    "minimum_should_match": 1
+                    "minimum_should_match": 1,
                 }
             },
-            "size": 10
+            "size": 10,
         }
 
         response = es.search(index=TCIL_PACKAGE_INDEX, body=search_body)
@@ -436,7 +456,7 @@ async def search_by_package_name(
                 pkg_subtype_id=source.get("pkgSubtypeId", 0),
                 is_flight_included=source.get("isFlightIncluded", "N"),
                 product_id=source.get("productId", 0),
-                holiday_plus_subtype=source.get("holidayPlusSubType", -1)
+                holiday_plus_subtype=source.get("holidayPlusSubType", -1),
             )
 
             item_out = ItemOut(
@@ -501,11 +521,11 @@ async def search_by_package_name(
                     flightsAvailability=flights_availability,
                     constructed_thumbnailImage=(
                         f"{RESOURCES_URL}{source['packageId']}/{source.get('thumbnailImage', '')}"
-                        if source.get("thumbnailImage") else ""
+                        if source.get("thumbnailImage")
+                        else ""
                     ),
                     constructed_images=_generate_image_urls(
-                        source["packageId"],
-                        source.get("images") or []
+                        source["packageId"], source.get("images") or []
                     ),
                 ),
                 score=hit["_score"],
@@ -513,7 +533,9 @@ async def search_by_package_name(
 
             # Fetch fare calendar if requested
             if include_fare_calendar:
-                logging.info(f"Fetching fare calendar for package {source['packageId']}")
+                logging.info(
+                    f"Fetching fare calendar for package {source['packageId']}"
+                )
                 fare_calendar_data = fetch_fare_calendar_for_package(
                     package_id=source["packageId"],
                     pkg_subtype_id=source.get("pkgSubtypeId", 0),
@@ -527,7 +549,7 @@ async def search_by_package_name(
                         )
                         for city in source.get("departureCities", [])
                     ],
-                    departure_city_filter=departure_city  # Only fetch for specified city
+                    departure_city_filter=departure_city,  # Only fetch for specified city
                 )
                 if fare_calendar_data:
                     item_out.fareCalendar = fare_calendar_data
@@ -564,23 +586,29 @@ async def get_raw_response(
     try:
         package_id = body.get("packageId")
         if not package_id:
-            raise HTTPException(status_code=400, detail="packageId is required in the request body.")
+            raise HTTPException(
+                status_code=400, detail="packageId is required in the request body."
+            )
 
-        logging.info(f"[get_raw_response] Fetching raw response for packageId: {package_id}")
+        logging.info(
+            f"[get_raw_response] Fetching raw response for packageId: {package_id}"
+        )
 
-        search_body = {
-            "query": {"term": {"packageId": package_id}},
-            "size": 1
-        }
+        search_body = {"query": {"term": {"packageId": package_id}}, "size": 1}
 
         response = es.search(index=TCIL_RAW_INDEX, body=search_body)
         hits = response.get("hits", {}).get("hits", [])
 
         if not hits:
-            raise HTTPException(status_code=404, detail=f"No raw response found for packageId: {package_id}")
+            raise HTTPException(
+                status_code=404,
+                detail=f"No raw response found for packageId: {package_id}",
+            )
 
         source = hits[0]["_source"]
-        logging.info(f"[get_raw_response] Found raw response for packageId: {package_id}")
+        logging.info(
+            f"[get_raw_response] Found raw response for packageId: {package_id}"
+        )
 
         return JSONResponse(
             status_code=200,
@@ -589,7 +617,7 @@ async def get_raw_response(
                 "packageId": source.get("packageId"),
                 "fetchedAt": source.get("fetchedAt"),
                 "raw_response": source.get("raw_response"),
-            }
+            },
         )
 
     except HTTPException:
@@ -615,29 +643,30 @@ async def get_all_package_themes():
                 "unique_themes": {
                     "terms": {
                         "field": "packageTheme.keyword",
-                        "size": 1000  # Get all themes
+                        "size": 1000,  # Get all themes
                     }
                 }
-            }
+            },
         }
 
         response = es.search(index=TCIL_PACKAGE_INDEX, body=search_body)
-        
+
         # Extract themes and counts from aggregation
-        buckets = response.get("aggregations", {}).get("unique_themes", {}).get("buckets", [])
-        
+        buckets = (
+            response.get("aggregations", {}).get("unique_themes", {}).get("buckets", [])
+        )
+
         themes_with_counts = [
-            {
-                "theme": bucket["key"],
-                "packageCount": bucket["doc_count"]
-            }
+            {"theme": bucket["key"], "packageCount": bucket["doc_count"]}
             for bucket in buckets
         ]
 
         # Sort by package count (descending)
         themes_with_counts.sort(key=lambda x: x["packageCount"], reverse=True)
 
-        logging.info(f"[get_all_package_themes] Found {len(themes_with_counts)} unique themes")
+        logging.info(
+            f"[get_all_package_themes] Found {len(themes_with_counts)} unique themes"
+        )
 
         return JSONResponse(
             status_code=200,
@@ -645,8 +674,8 @@ async def get_all_package_themes():
                 "code": 200,
                 "message": f"Found {len(themes_with_counts)} unique package themes",
                 "themes": themes_with_counts,
-                "totalThemes": len(themes_with_counts)
-            }
+                "totalThemes": len(themes_with_counts),
+            },
         )
 
     except RequestError as e:
@@ -670,7 +699,7 @@ async def get_countries_by_theme(
     """
     try:
         package_theme = body.get("packageTheme")
-        
+
         if not package_theme:
             raise HTTPException(
                 status_code=400, detail="packageTheme is required in the request body."
@@ -681,31 +710,28 @@ async def get_countries_by_theme(
         # Query to filter by theme and aggregate countries
         search_body = {
             "size": 0,
-            "query": {
-                "term": {
-                    "packageTheme.keyword": package_theme
-                }
-            },
+            "query": {"term": {"packageTheme.keyword": package_theme}},
             "aggs": {
                 "unique_countries": {
                     "terms": {
                         "field": "visitingCountries.keyword",
-                        "size": 1000  # Get all countries
+                        "size": 1000,  # Get all countries
                     }
                 }
-            }
+            },
         }
 
         response = es.search(index=TCIL_PACKAGE_INDEX, body=search_body)
-        
+
         # Extract countries and counts from aggregation
-        buckets = response.get("aggregations", {}).get("unique_countries", {}).get("buckets", [])
-        
+        buckets = (
+            response.get("aggregations", {})
+            .get("unique_countries", {})
+            .get("buckets", [])
+        )
+
         countries_with_counts = [
-            {
-                "country": bucket["key"],
-                "packageCount": bucket["doc_count"]
-            }
+            {"country": bucket["key"], "packageCount": bucket["doc_count"]}
             for bucket in buckets
         ]
 
@@ -727,8 +753,8 @@ async def get_countries_by_theme(
                 "theme": package_theme,
                 "countries": countries_with_counts,
                 "totalCountries": len(countries_with_counts),
-                "totalPackages": total_packages
-            }
+                "totalPackages": total_packages,
+            },
         )
 
     except RequestError as e:
@@ -768,16 +794,16 @@ async def get_all_bogo_packages():
 
         def to_item_out(hit) -> ItemOut:
             source = hit["_source"]
-            
+
             # Generate flights availability description
             flights_availability = generate_flights_availability_description(
                 pkg_subtype_name=source.get("pkgSubtypeName", ""),
                 pkg_subtype_id=source.get("pkgSubtypeId", 0),
                 is_flight_included=source.get("isFlightIncluded", "N"),
                 product_id=source.get("productId", 0),
-                holiday_plus_subtype=source.get("holidayPlusSubType", -1)
+                holiday_plus_subtype=source.get("holidayPlusSubType", -1),
             )
-            
+
             return ItemOut(
                 id=hit["_id"],
                 itinerary_data=savedItineraryData(
@@ -840,11 +866,11 @@ async def get_all_bogo_packages():
                     flightsAvailability=flights_availability,
                     constructed_thumbnailImage=(
                         f"{RESOURCES_URL}{source['packageId']}/{source.get('thumbnailImage', '')}"
-                        if source.get("thumbnailImage") else ""
+                        if source.get("thumbnailImage")
+                        else ""
                     ),
                     constructed_images=_generate_image_urls(
-                        source["packageId"],
-                        source.get("images") or []
+                        source["packageId"], source.get("images") or []
                     ),
                 ),
                 score=hit.get("_score", 0.0),
@@ -1209,9 +1235,11 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             )
 
             # Split by common delimiters (comma, 'and', 'or') to extract individual destinations
-            destinations = re.split(r'[,\s]+(?:and|or)\s+|,\s*', search_term)
+            destinations = re.split(r"[,\s]+(?:and|or)\s+|,\s*", search_term)
             destinations = [d.strip() for d in destinations if d.strip()]
-            logging.info(f"[livepackagesv1] Extracted destinations for fallback: {destinations}")
+            logging.info(
+                f"[livepackagesv1] Extracted destinations for fallback: {destinations}"
+            )
 
             # Build a query that searches for any of the destinations
             should_clauses = []
@@ -1219,12 +1247,14 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
                 # Clean each destination term
                 cleaned_dest = re.sub(r"[^\w\s]", "", dest).strip()
                 if cleaned_dest:
-                    should_clauses.extend([
-                        {"match_phrase": {"packageName": cleaned_dest}},
-                        {"match": {"cities.cityName": cleaned_dest}},
-                        {"match_phrase": {"packageSummary": cleaned_dest}},
-                    ])
-            
+                    should_clauses.extend(
+                        [
+                            {"match_phrase": {"packageName": cleaned_dest}},
+                            {"match": {"cities.cityName": cleaned_dest}},
+                            {"match_phrase": {"packageSummary": cleaned_dest}},
+                        ]
+                    )
+
             if not should_clauses:
                 # Fallback to original behavior if no valid destinations extracted
                 cleaned_term = re.sub(r"\b(and|or)\b|[^\w\s]", "", search_term).strip()
@@ -1249,7 +1279,9 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             try:
                 es_result = es.search(index=TCIL_PACKAGE_INDEX, body=fallback_body)
                 package_ids = {hit["_id"] for hit in es_result["hits"]["hits"]}
-                logging.info(f"[livepackagesv1] Fallback found {len(package_ids)} package IDs")
+                logging.info(
+                    f"[livepackagesv1] Fallback found {len(package_ids)} package IDs"
+                )
             except Exception as es_error:
                 logging.warning(
                     f"[livepackagesv1] Elasticsearch fallback failed: {es_error}. Retrying without nested cities query."
@@ -1259,19 +1291,23 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
                 for dest in destinations:
                     cleaned_dest = re.sub(r"[^\w\s]", "", dest).strip()
                     if cleaned_dest:
-                        simple_should.extend([
-                            {"match_phrase": {"packageName": cleaned_dest}},
-                            {"match_phrase": {"packageSummary": cleaned_dest}},
-                        ])
-                
+                        simple_should.extend(
+                            [
+                                {"match_phrase": {"packageName": cleaned_dest}},
+                                {"match_phrase": {"packageSummary": cleaned_dest}},
+                            ]
+                        )
+
                 if not simple_should:
-                    cleaned_term = re.sub(r"\b(and|or)\b|[^\w\s]", "", search_term).strip()
+                    cleaned_term = re.sub(
+                        r"\b(and|or)\b|[^\w\s]", "", search_term
+                    ).strip()
                     cleaned_term = re.sub(r"\s+", " ", cleaned_term)
                     simple_should = [
                         {"match_phrase": {"packageName": cleaned_term}},
                         {"match_phrase": {"packageSummary": cleaned_term}},
                     ]
-                
+
                 simple_fallback = {
                     "query": {
                         "bool": {
@@ -1283,7 +1319,9 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
                 }
                 es_result = es.search(index=TCIL_PACKAGE_INDEX, body=simple_fallback)
                 package_ids = {hit["_id"] for hit in es_result["hits"]["hits"]}
-                logging.info(f"[livepackagesv1] Simple fallback found {len(package_ids)} package IDs")
+                logging.info(
+                    f"[livepackagesv1] Simple fallback found {len(package_ids)} package IDs"
+                )
 
         # Return 404 if no packages found after both AutoSuggest and fallback
         if not package_ids:
@@ -1325,13 +1363,18 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             subtype_filtered = [
                 p
                 for p in detailed_packages
-                if p.itinerary_data.pkgSubtypeName and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
+                if p.itinerary_data.pkgSubtypeName
+                and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
             ]
             if subtype_filtered:
                 detailed_packages = subtype_filtered
-                logging.info(f"[livepackagesv1] Filtered to {len(detailed_packages)} {pkg_subtype_filter} packages")
+                logging.info(
+                    f"[livepackagesv1] Filtered to {len(detailed_packages)} {pkg_subtype_filter} packages"
+                )
             else:
-                logging.warning(f"[livepackagesv1] No {pkg_subtype_filter} packages found, showing all package types")
+                logging.warning(
+                    f"[livepackagesv1] No {pkg_subtype_filter} packages found, showing all package types"
+                )
 
         # Filter packages by theme (optional — if no match, skip the filter and return all)
         if theme:
@@ -1342,14 +1385,19 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             ]
             if theme_filtered:
                 detailed_packages = theme_filtered
-                logging.info(f"[livepackagesv1] Filtered to {len(detailed_packages)} packages matching theme '{theme}'")
+                logging.info(
+                    f"[livepackagesv1] Filtered to {len(detailed_packages)} packages matching theme '{theme}'"
+                )
             else:
                 # Theme not matched — log a warning but continue with all packages
-                all_available_themes = sorted({
-                    t for pkg in detailed_packages
-                    if pkg.itinerary_data.packageTheme
-                    for t in pkg.itinerary_data.packageTheme
-                })
+                all_available_themes = sorted(
+                    {
+                        t
+                        for pkg in detailed_packages
+                        if pkg.itinerary_data.packageTheme
+                        for t in pkg.itinerary_data.packageTheme
+                    }
+                )
                 logging.warning(
                     f"[livepackagesv1] No packages found for theme '{theme}'. "
                     f"Ignoring theme filter. Available themes: {all_available_themes}"
@@ -1394,8 +1442,10 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             # Apply pkgSubtypeName filter to unfiltered packages
             if pkg_subtype_filter and pkg_subtype_filter in ["GIT", "FIT"]:
                 subtype_filtered = [
-                    p for p in final_candidates
-                    if p.itinerary_data.pkgSubtypeName and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
+                    p
+                    for p in final_candidates
+                    if p.itinerary_data.pkgSubtypeName
+                    and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
                 ]
                 if subtype_filtered:
                     final_candidates = subtype_filtered
@@ -1424,13 +1474,19 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             # Apply pkgSubtypeName filter
             if pkg_subtype_filter and pkg_subtype_filter in ["GIT", "FIT"]:
                 subtype_filtered = [
-                    p for p in final_candidates_month
-                    if p.itinerary_data.pkgSubtypeName and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
+                    p
+                    for p in final_candidates_month
+                    if p.itinerary_data.pkgSubtypeName
+                    and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
                 ]
                 if subtype_filtered:
                     final_candidates_month = subtype_filtered
             final_list, matched_user_budget = apply_filters(
-                final_candidates_month, departure_city, target_budget, theme, target_days
+                final_candidates_month,
+                departure_city,
+                target_budget,
+                theme,
+                target_days,
             )
             final_list = prioritize_bogo(final_list)[:15]
             code_val = 203 if not fallback_used else 213
@@ -1449,8 +1505,10 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
             # Apply pkgSubtypeName filter
             if pkg_subtype_filter and pkg_subtype_filter in ["GIT", "FIT"]:
                 subtype_filtered = [
-                    p for p in final_candidates_city
-                    if p.itinerary_data.pkgSubtypeName and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
+                    p
+                    for p in final_candidates_city
+                    if p.itinerary_data.pkgSubtypeName
+                    and p.itinerary_data.pkgSubtypeName.upper() == pkg_subtype_filter
                 ]
                 if subtype_filtered:
                     final_candidates_city = subtype_filtered
@@ -1481,17 +1539,24 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
 
         # Fetch fare calendar if requested
         if include_fare_calendar:
-            logging.info(f"[livepackages] Fetching fare calendar for {len(final_list)} packages")
-            
+            logging.info(
+                f"[livepackages] Fetching fare calendar for {len(final_list)} packages"
+            )
+
             # Get auth token once and reuse for all fare calendar calls
             from services import get_new_auth_token
+
             try:
                 request_id, session_id = get_new_auth_token()
-                logging.info(f"[livepackages] Using shared auth token (requestId: {request_id[:10]}...) for {len(final_list)} packages")
+                logging.info(
+                    f"[livepackages] Using shared auth token (requestId: {request_id[:10]}...) for {len(final_list)} packages"
+                )
             except Exception as e:
-                logging.error(f"[livepackages] Failed to get auth token for fare calendar: {str(e)}")
+                logging.error(
+                    f"[livepackages] Failed to get auth token for fare calendar: {str(e)}"
+                )
                 request_id, session_id = None, None
-            
+
             for pkg in final_list:
                 try:
                     fare_calendar_data = fetch_fare_calendar_for_package(
@@ -1501,12 +1566,14 @@ async def get_packages_v2(request: PackageSearchRequest) -> JSONResponse:
                         departure_cities=pkg.itinerary_data.departureCities,
                         request_id=request_id,
                         session_id=session_id,
-                        departure_city_filter=departure_city  # Only fetch for specified city
+                        departure_city_filter=departure_city,  # Only fetch for specified city
                     )
                     if fare_calendar_data:
                         pkg.fareCalendar = fare_calendar_data
                 except Exception as e:
-                    logging.error(f"[livepackages] Error fetching fare calendar for {pkg.itinerary_data.packageId}: {str(e)}")
+                    logging.error(
+                        f"[livepackages] Error fetching fare calendar for {pkg.itinerary_data.packageId}: {str(e)}"
+                    )
 
         if not matched_user_budget:
             code_val = 201 if not fallback_used else 211
@@ -1742,18 +1809,18 @@ def store_geocode_in_cache(search_term: str, country_name: str):
 def load_destination_faq_from_json(destination_name: str) -> Dict[str, Any]:
     """
     Generic function to load FAQ data from JSON files for a given destination.
-    
+
     Args:
         destination_name: Name of the destination (e.g., 'thailand', 'singapore')
-    
+
     Returns:
         Dictionary containing FAQ data, or empty dict if file not found
-    
+
     Usage:
         To add a new destination:
         1. Create a JSON file: data/{destination_name}_faq.json
         2. The function will automatically load it when called
-    
+
     Example file structure:
         data/thailand_faq.json
         data/singapore_faq.json
@@ -1762,26 +1829,34 @@ def load_destination_faq_from_json(destination_name: str) -> Dict[str, Any]:
     try:
         # Get the directory where this script is located
         current_dir = Path(__file__).parent
-        
+
         # Construct the path to the FAQ JSON file
         faq_file_path = current_dir / "data" / f"{destination_name.lower()}_faq.json"
-        
+
         # Check if file exists
         if not faq_file_path.exists():
-            logging.info(f"[load_destination_faq_from_json] No FAQ file found for '{destination_name}' at {faq_file_path}")
+            logging.info(
+                f"[load_destination_faq_from_json] No FAQ file found for '{destination_name}' at {faq_file_path}"
+            )
             return {}
-        
+
         # Load and return the JSON data
-        with open(faq_file_path, 'r', encoding='utf-8') as f:
+        with open(faq_file_path, "r", encoding="utf-8") as f:
             faq_data = json.load(f)
-            logging.info(f"[load_destination_faq_from_json] Successfully loaded FAQ data for '{destination_name}' from {faq_file_path}")
+            logging.info(
+                f"[load_destination_faq_from_json] Successfully loaded FAQ data for '{destination_name}' from {faq_file_path}"
+            )
             return faq_data
-    
+
     except json.JSONDecodeError as e:
-        logging.error(f"[load_destination_faq_from_json] Invalid JSON format in FAQ file for '{destination_name}': {str(e)}")
+        logging.error(
+            f"[load_destination_faq_from_json] Invalid JSON format in FAQ file for '{destination_name}': {str(e)}"
+        )
         return {}
     except Exception as e:
-        logging.error(f"[load_destination_faq_from_json] Error loading FAQ file for '{destination_name}': {str(e)}")
+        logging.error(
+            f"[load_destination_faq_from_json] Error loading FAQ file for '{destination_name}': {str(e)}"
+        )
         return {}
 
 
@@ -1789,23 +1864,25 @@ def merge_faq_data(es_faq: Dict[str, Any], json_faq: Dict[str, Any]) -> Dict[str
     """
     Merge FAQ data from Elasticsearch and JSON file.
     JSON data takes precedence over ES data for duplicate keys.
-    
+
     Args:
         es_faq: FAQ data from Elasticsearch
         json_faq: FAQ data from JSON file
-    
+
     Returns:
         Merged FAQ dictionary
     """
     if not es_faq and not json_faq:
         return {}
-    
+
     # Start with ES data, then update with JSON data (JSON takes precedence)
     merged = dict(es_faq) if es_faq else {}
     if json_faq:
         merged.update(json_faq)
-        logging.info(f"[merge_faq_data] Merged {len(json_faq)} FAQ entries from JSON with {len(es_faq or {})} from ES")
-    
+        logging.info(
+            f"[merge_faq_data] Merged {len(json_faq)} FAQ entries from JSON with {len(es_faq or {})} from ES"
+        )
+
     return merged
 
 
@@ -2069,36 +2146,44 @@ async def get_destination_details(request: AutoBudgetRequest):
         # ---------------------------
         es_faq_data = {}
         json_faq_data = {}
-        
+
         # Fetch from Elasticsearch
         try:
             # Use the search_term and country_name for lookup
             # Try search_term first, then country_name
             es_faq_data = await get_destination_faq_internal(search_term)
-            
+
             if not es_faq_data and country_name:
                 es_faq_data = await get_destination_faq_internal(country_name)
-            
+
             if es_faq_data:
                 logging.info(f"[get_destination_details] Found FAQ data from ES")
             else:
-                logging.info(f"[get_destination_details] No FAQ data found in ES for '{search_term}' or '{country_name}'")
-                
+                logging.info(
+                    f"[get_destination_details] No FAQ data found in ES for '{search_term}' or '{country_name}'"
+                )
+
         except Exception as e:
-            logging.error(f"[get_destination_details] Error fetching FAQ from ES: {str(e)}")
-        
+            logging.error(
+                f"[get_destination_details] Error fetching FAQ from ES: {str(e)}"
+            )
+
         # Fetch from JSON files (try both search_term and country_name)
         json_faq_data = load_destination_faq_from_json(search_term)
         if not json_faq_data and country_name and country_name.lower() != search_term:
             json_faq_data = load_destination_faq_from_json(country_name)
-        
+
         # Merge FAQ data (JSON takes precedence)
         faq_data = merge_faq_data(es_faq_data, json_faq_data)
-        
+
         if faq_data:
-            logging.info(f"[get_destination_details] Final FAQ data contains {len(faq_data)} entries")
+            logging.info(
+                f"[get_destination_details] Final FAQ data contains {len(faq_data)} entries"
+            )
         else:
-            logging.info(f"[get_destination_details] No FAQ data available from any source")
+            logging.info(
+                f"[get_destination_details] No FAQ data available from any source"
+            )
 
         # ---------------------------
         # 8. Return final results

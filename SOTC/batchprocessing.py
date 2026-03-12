@@ -13,7 +13,14 @@ from email.mime.multipart import MIMEMultipart
 from typing import List
 
 # Constants and external functions
-from constants import MAX_RETRIES, TIMEOUT, es, SOTC_PACKAGE_INDEX, SOTC_RAW_INDEX, ENABLE_SCHEDULED_JOB
+from constants import (
+    MAX_RETRIES,
+    TIMEOUT,
+    es,
+    SOTC_PACKAGE_INDEX,
+    SOTC_RAW_INDEX,
+    ENABLE_SCHEDULED_JOB,
+)
 from fetchpackages import fetch_packages_for_month, fetch_package_dynamically
 from requests.exceptions import ReadTimeout, ConnectionError, HTTPError
 from NewESmapping import package_index_mapping
@@ -38,6 +45,7 @@ SMTP_PORT = 587
 SMTP_USER = "testerspora@gmail.com"
 SMTP_PASS = "rgqc upfg wlbk gteg"
 TO_EMAILS = ["jayanth@atirath.com", "bharat@atirath.com", "bhanu@atirath.com"]
+
 
 def send_email_report(subject: str, body: str, recipient_list: List[str]):
     msg = MIMEMultipart()
@@ -70,6 +78,7 @@ def reset_index():
     logging.info(f"Creating index: {SOTC_PACKAGE_INDEX} with correct mapping")
     es.indices.create(index=SOTC_PACKAGE_INDEX, body=package_index_mapping)
 
+
 @router.post("/reset_index")
 def reset_index_endpoint():
     try:
@@ -78,6 +87,7 @@ def reset_index_endpoint():
     except Exception as e:
         logging.error(f"Failed to reset index: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 # -----------------------------------------------------------------------
 #  6) Main entry to trigger the entire batch process (endpoint)
@@ -92,8 +102,18 @@ async def batch_process_all_packages(background_tasks: BackgroundTasks):
     """
     try:
         months = [
-            "january", "february", "march", "april", "may", "june",
-            "july", "august", "september", "october", "november", "december"
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december",
         ]
         current_year = datetime.now().year
 
@@ -121,14 +141,13 @@ async def clear_index():
                 continue
             logging.info(f"Clearing all documents in {index}...")
             await asyncio.to_thread(
-                es.delete_by_query,
-                index=index,
-                body={"query": {"match_all": {}}}
+                es.delete_by_query, index=index, body={"query": {"match_all": {}}}
             )
             logging.info(f"All documents cleared from {index}.")
     except Exception as e:
         logging.error(f"Error clearing index: {str(e)}")
         raise
+
 
 async def process_all_packages(months: List[str], current_year: int):
     """
@@ -140,7 +159,7 @@ async def process_all_packages(months: List[str], current_year: int):
     Returns a dict with summary stats (failed months, total packages, summary generation counts).
     """
     logging.info("Starting 12-month cycle batch processing.")
-    
+
     failed_months = []
     package_months = {}  # {package_id: [available_months]}
     lock = asyncio.Lock()  # For thread-safe updates
@@ -175,8 +194,9 @@ async def process_all_packages(months: List[str], current_year: int):
     if package_months:
         await clear_index()
     else:
-        logging.warning("No packages fetched. Skipping index clearing to retain existing data.")
-
+        logging.warning(
+            "No packages fetched. Skipping index clearing to retain existing data."
+        )
 
     # Now process package details in parallel
     summary_stats = await process_unique_packages(package_months)
@@ -185,21 +205,31 @@ async def process_all_packages(months: List[str], current_year: int):
     return {
         "failed_months": failed_months,
         "total_packages": len(package_months),
-        "summary_stats": summary_stats
+        "summary_stats": summary_stats,
     }
 
+
 async def fetch_and_store_monthly_packages(
-    month: str,
-    year: int,
-    package_months: dict,
-    lock: asyncio.Lock
+    month: str, year: int, package_months: dict, lock: asyncio.Lock
 ):
     """
     Fetch package IDs for a given month and track their availability months.
     """
     try:
-        month_index = ["january", "february", "march", "april", "may", "june",
-                       "july", "august", "september", "october", "november", "december"].index(month)
+        month_index = [
+            "january",
+            "february",
+            "march",
+            "april",
+            "may",
+            "june",
+            "july",
+            "august",
+            "september",
+            "october",
+            "november",
+            "december",
+        ].index(month)
 
         # Use 1-based month for the external API
         month_of_travel = f"{month_index:02d}-{year}"
@@ -210,7 +240,9 @@ async def fetch_and_store_monthly_packages(
         package_ids = None
         while attempt < MAX_RETRIES:
             try:
-                logging.info(f"Fetching packages for {month_of_travel} (Attempt {attempt + 1}/{MAX_RETRIES})...")
+                logging.info(
+                    f"Fetching packages for {month_of_travel} (Attempt {attempt + 1}/{MAX_RETRIES})..."
+                )
                 package_ids = await fetch_packages_with_timeout(month_of_travel)
                 if package_ids:
                     logging.info(f"Fetched {len(package_ids)} packages for {month_key}")
@@ -228,10 +260,12 @@ async def fetch_and_store_monthly_packages(
                 break
 
             attempt += 1
-            await asyncio.sleep(2 ** attempt)  # Exponential backoff
+            await asyncio.sleep(2**attempt)  # Exponential backoff
 
         if not package_ids:
-            logging.error(f"Failed to fetch packages for {month_key} after {MAX_RETRIES} attempts")
+            logging.error(
+                f"Failed to fetch packages for {month_key} after {MAX_RETRIES} attempts"
+            )
             return
 
         # STEP 2: Track package-month relationships
@@ -255,11 +289,14 @@ async def fetch_packages_with_timeout(month_of_travel):
     try:
         return await asyncio.wait_for(
             asyncio.to_thread(fetch_packages_for_month, month_of_travel),
-            timeout=TIMEOUT
+            timeout=TIMEOUT,
         )
     except asyncio.TimeoutError:
-        logging.error(f"Timeout error: Fetching packages for {month_of_travel} took longer than {TIMEOUT} seconds.")
+        logging.error(
+            f"Timeout error: Fetching packages for {month_of_travel} took longer than {TIMEOUT} seconds."
+        )
         return []
+
 
 async def process_unique_packages(package_months: dict):
     """
@@ -272,7 +309,9 @@ async def process_unique_packages(package_months: dict):
     summary_stats = {"generated": 0, "failed": 0}
 
     if not package_months:
-        logging.warning("⚠️ No unique packages found after filtering. Skipping detailed processing.")
+        logging.warning(
+            "⚠️ No unique packages found after filtering. Skipping detailed processing."
+        )
         return summary_stats
 
     SEMAPHORE_LIMIT = 50
@@ -280,7 +319,9 @@ async def process_unique_packages(package_months: dict):
 
     async def limited_fetch_and_store(package_id):
         async with semaphore:
-            result = await fetch_and_store_package(package_id, package_months.get(package_id, []))
+            result = await fetch_and_store_package(
+                package_id, package_months.get(package_id, [])
+            )
             if isinstance(result, tuple):
                 summary = result[0].get("doc", {}).get("packageSummary")
                 if summary and not summary.strip().lower().startswith("error"):
@@ -299,13 +340,16 @@ async def process_unique_packages(package_months: dict):
 
     try:
         from tqdm import tqdm
+
         pbar = tqdm(total=len(package_list), desc="Processing packages", unit="pkg")
     except ImportError:
         pbar = None
 
     for i in range(0, len(package_list), batch_size):
-        batch = package_list[i: i + batch_size]
-        logging.info(f"🔄 Processing batch {i // batch_size + 1}: {len(batch)} packages.")
+        batch = package_list[i : i + batch_size]
+        logging.info(
+            f"🔄 Processing batch {i // batch_size + 1}: {len(batch)} packages."
+        )
 
         tasks = [limited_fetch_and_store(pkg) for pkg in batch]
         batch_results = await asyncio.gather(*tasks, return_exceptions=True)
@@ -332,17 +376,23 @@ async def process_unique_packages(package_months: dict):
                 )
                 if failed == 0:
                     break
-                logging.warning(f"Retry {retry_count + 1}/{MAX_RETRIES}: {failed} documents failed.")
+                logging.warning(
+                    f"Retry {retry_count + 1}/{MAX_RETRIES}: {failed} documents failed."
+                )
                 retry_count += 1
-                await asyncio.sleep(2 ** retry_count)
+                await asyncio.sleep(2**retry_count)
 
-            logging.info(f"📌 Successfully indexed {success} packages into {SOTC_PACKAGE_INDEX}. Failed: {failed}")
+            logging.info(
+                f"📌 Successfully indexed {success} packages into {SOTC_PACKAGE_INDEX}. Failed: {failed}"
+            )
 
             # 🔄 Run aliasCityName update script
             try:
                 script_path = "/home/gcp-admin/thomascook-travelplanner/Elastic Search/DataExtractionTools/update_aliasName.py"
                 logging.info("Running post-indexing aliasCityName update script...")
-                result = subprocess.run(["python3", script_path], capture_output=True, text=True)
+                result = subprocess.run(
+                    ["python3", script_path], capture_output=True, text=True
+                )
 
                 if result.returncode == 0:
                     logging.info("✅ aliasCityName update script ran successfully.")
@@ -362,15 +412,20 @@ async def process_unique_packages(package_months: dict):
             await asyncio.to_thread(
                 helpers.bulk, es, es_raw_actions, chunk_size=500, stats_only=True
             )
-            logging.info(f"📌 Successfully indexed {len(es_raw_actions)} raw packages into {SOTC_RAW_INDEX}.")
+            logging.info(
+                f"📌 Successfully indexed {len(es_raw_actions)} raw packages into {SOTC_RAW_INDEX}."
+            )
         except Exception as e:
             logging.error(f"❌ Error during raw bulk indexing: {str(e)}")
 
-    logging.info(f"✅ Batch processing completed. Processed: {len(es_actions)}, Failed: {len(failed_packages)}")
-    logging.info(f"📊 Summary generation stats: Generated: {summary_stats['generated']}, Failed: {summary_stats['failed']}")
+    logging.info(
+        f"✅ Batch processing completed. Processed: {len(es_actions)}, Failed: {len(failed_packages)}"
+    )
+    logging.info(
+        f"📊 Summary generation stats: Generated: {summary_stats['generated']}, Failed: {summary_stats['failed']}"
+    )
 
     return summary_stats
-
 
 
 async def ensure_raw_index_exists():
@@ -386,11 +441,13 @@ async def ensure_raw_index_exists():
                     "properties": {
                         "packageId": {"type": "keyword"},
                         "fetchedAt": {"type": "date"},
-                        "raw_response": {"type": "object", "enabled": False}
+                        "raw_response": {"type": "object", "enabled": False},
                     }
                 }
             }
-            await asyncio.to_thread(es.indices.create, index=SOTC_RAW_INDEX, body=raw_index_mapping)
+            await asyncio.to_thread(
+                es.indices.create, index=SOTC_RAW_INDEX, body=raw_index_mapping
+            )
             logging.info(f"Index {SOTC_RAW_INDEX} created.")
         else:
             logging.info(f"Index {SOTC_RAW_INDEX} already exists.")
@@ -417,18 +474,21 @@ async def fetch_and_store_package(package_id: str, available_months: list):
 
         package_data = result["processed"]
         raw_pdp_data = result["raw"]
-        
-        summary_status = "generated" if package_data.get("packageSummary") else "not generated"
+
+        summary_status = (
+            "generated" if package_data.get("packageSummary") else "not generated"
+        )
         logging.info(f"Processed package {package_id} | Summary: {summary_status}")
 
-
-        itinerary_data = package_data.get("packageItinerary", {"summary": "", "itinerary": []})
+        itinerary_data = package_data.get(
+            "packageItinerary", {"summary": "", "itinerary": []}
+        )
         formatted_itinerary = [
             {
                 "day": item.get("day"),
                 "description": item.get("description", ""),
                 "mealDescription": item.get("mealDescription", ""),
-                "overnightStay": item.get("overnightStay", "")
+                "overnightStay": item.get("overnightStay", ""),
             }
             for item in itinerary_data.get("itinerary", [])
         ]
@@ -437,13 +497,13 @@ async def fetch_and_store_package(package_id: str, available_months: list):
             {
                 "cityName": city.get("cityName", ""),
                 "cityCode": city.get("cityCode", ""),
-                "ltItineraryCode": city.get("ltItineraryCode", "")
+                "ltItineraryCode": city.get("ltItineraryCode", ""),
             }
             for city in package_data.get("departureCities", [])
         ]
 
         processed_action = {
-            "_op_type": "update", 
+            "_op_type": "update",
             "_index": SOTC_PACKAGE_INDEX,
             "_id": package_data["packageId"],
             "doc": {
@@ -465,7 +525,7 @@ async def fetch_and_store_package(package_id: str, available_months: list):
                 "departureCities": departure_cities,
                 "packageItinerary": {
                     "summary": itinerary_data.get("summary", ""),
-                    "itinerary": formatted_itinerary
+                    "itinerary": formatted_itinerary,
                 },
                 "hotels": package_data.get("hotels"),
                 "hotels_list": package_data.get("hotels_list"),
@@ -481,9 +541,9 @@ async def fetch_and_store_package(package_id: str, available_months: list):
                 "pkgTypeId": package_data["pkgTypeId"],
                 "isFlightIncluded": package_data.get("isFlightIncluded"),
                 "holidayPlusSubType": package_data.get("holidayPlusSubType"),
-                "productId": package_data.get("productId")
+                "productId": package_data.get("productId"),
             },
-            "doc_as_upsert": True
+            "doc_as_upsert": True,
         }
 
         raw_action = {
@@ -492,13 +552,14 @@ async def fetch_and_store_package(package_id: str, available_months: list):
             "_id": package_data["packageId"],
             "packageId": package_data["packageId"],
             "fetchedAt": datetime.utcnow().isoformat(),
-            "raw_response": raw_pdp_data
+            "raw_response": raw_pdp_data,
         }
 
         return processed_action, raw_action
     except Exception as e:
         logging.error(f"Error fetching package {package_id}: {str(e)}")
         return e
+
 
 async def ensure_index_exists():
     """
@@ -508,7 +569,9 @@ async def ensure_index_exists():
         exists = await asyncio.to_thread(es.indices.exists, index=SOTC_PACKAGE_INDEX)
         if not exists:
             logging.info(f"Index {SOTC_PACKAGE_INDEX} does not exist. Creating...")
-            await asyncio.to_thread(es.indices.create, index=SOTC_PACKAGE_INDEX, body=package_index_mapping)
+            await asyncio.to_thread(
+                es.indices.create, index=SOTC_PACKAGE_INDEX, body=package_index_mapping
+            )
             logging.info(f"Index {SOTC_PACKAGE_INDEX} created.")
         else:
             logging.info(f"Index {SOTC_PACKAGE_INDEX} already exists.")
@@ -522,8 +585,20 @@ async def ensure_index_exists():
 # -----------------------------------------------------------------------
 async def run_scheduled_batch_process():
     logging.info("Starting scheduled batch process...")
-    months = [ "january", "february", "march", "april", "may", "june",
-               "july", "august", "september", "october", "november", "december" ]
+    months = [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+    ]
     this_year = datetime.now().year
     try:
         result = await process_all_packages(months, this_year)
@@ -554,11 +629,10 @@ async def schedule_daily_job():
         trigger="cron",
         hour=1,
         minute=50,
-        id="run_scheduled_batch_process"
+        id="run_scheduled_batch_process",
     )
     scheduler.start()
     logging.info("Scheduler started: batch will run daily at 01:50 IST.")
-
 
 
 # -----------------------------------------------------------------------

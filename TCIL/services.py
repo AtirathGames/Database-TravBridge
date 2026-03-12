@@ -67,17 +67,17 @@ def generate_flights_availability_description(
     pkg_subtype_id: int,
     is_flight_included: str,
     product_id: int,
-    holiday_plus_subtype: int
+    holiday_plus_subtype: int,
 ) -> str:
     """
     Generate a descriptive sentence about flight availability based on package parameters.
-    
+
     Classification:
     - GIT: pkgSubtypeId 1=Domestic, 3=International
     - FIT: pkgSubtypeId 2=Domestic, 4=International
     - Holiday+: productId=11, holidayPlusSubType 1=Flights Included, 2=Flights Optional
     """
-    
+
     # Determine if it's domestic or international
     if pkg_subtype_id in [1, 2]:
         classification = "Domestic"
@@ -85,14 +85,14 @@ def generate_flights_availability_description(
         classification = "International"
     else:
         classification = "Special"
-    
+
     # GIT packages
     if pkg_subtype_name == "GIT":
         if is_flight_included == "Y":
             return f"This package includes flights in the package price."
         else:
             return f"This package does not include flights. You can book flights separately."
-    
+
     # FIT packages with Holiday+
     elif pkg_subtype_name == "FIT" and product_id == 11:
         if holiday_plus_subtype == 1:
@@ -101,20 +101,22 @@ def generate_flights_availability_description(
             return f"This package offers optional flights. You can choose to add flights or book separately."
         else:
             return f"Please check with our Agent for flight options."
-    
+
     # Standard FIT packages
     elif pkg_subtype_name == "FIT":
         if is_flight_included == "Y":
             return f"This package includes flights in the package price."
         else:
             return f"This package does not include flights. You can book flights separately based on your preference."
-    
+
     # Default case
     else:
         if is_flight_included == "Y":
             return "This package includes flights in the package price."
         else:
             return "This package does not include flights. You can arrange flights separately."
+
+
 PACKAGE_CACHE_TIMESTAMPS: Dict[str, float] = {}
 CACHE_TTL_SECONDS = 60 * 10  # Cache packages for 10 min
 
@@ -352,7 +354,7 @@ def construct_item_out_from_source(source_data: dict, score: float) -> ItemOut:
         pkg_subtype_id=source_data.get("pkgSubtypeId", 0),
         is_flight_included=source_data.get("isFlightIncluded", "N"),
         product_id=source_data.get("productId", 0),
-        holiday_plus_subtype=source_data.get("holidayPlusSubType", -1)
+        holiday_plus_subtype=source_data.get("holidayPlusSubType", -1),
     )
 
     saved_data = savedItineraryData(
@@ -394,11 +396,11 @@ def construct_item_out_from_source(source_data: dict, score: float) -> ItemOut:
         serviceSlots=source_data.get("serviceSlots"),  # Add service slots
         constructed_thumbnailImage=(
             f"{RESOURCES_URL}{source_data.get('packageId', '')}/{source_data.get('thumbnailImage', '')}"
-            if source_data.get("thumbnailImage") else ""
+            if source_data.get("thumbnailImage")
+            else ""
         ),
         constructed_images=_generate_image_urls(
-            source_data.get("packageId", ""),
-            source_data.get("images") or []
+            source_data.get("packageId", ""), source_data.get("images") or []
         ),
     )
 
@@ -613,6 +615,7 @@ def get_days_tier(package_days: int, target_days: int) -> int:
 # Fare Calendar Integration
 # ============================================================================
 
+
 def fetch_fare_calendar_for_package(
     package_id: str,
     pkg_subtype_id: int,
@@ -620,11 +623,11 @@ def fetch_fare_calendar_for_package(
     departure_cities: List[DepartureCity],
     request_id: Optional[str] = None,
     session_id: Optional[str] = None,
-    departure_city_filter: Optional[str] = None
+    departure_city_filter: Optional[str] = None,
 ) -> Optional[Dict[str, Any]]:
     """
     Fetch fare calendar data for a package based on its type (GIT or FIT).
-    
+
     Args:
         package_id: Package ID
         pkg_subtype_id: Package subtype ID (1=DOM GIT, 2=DOM FIT, 3=INT GIT, 4=INT FIT)
@@ -633,7 +636,7 @@ def fetch_fare_calendar_for_package(
         request_id: Auth token request ID (if not provided, will fetch new one)
         session_id: Auth token session ID (if not provided, will fetch new one)
         departure_city_filter: Optional city name to fetch fare calendar for only that city
-    
+
     Returns:
         Fare calendar dict or None if fetch fails
     """
@@ -642,37 +645,47 @@ def fetch_fare_calendar_for_package(
         filtered_cities = departure_cities
         if departure_city_filter:
             filtered_cities = [
-                city for city in departure_cities 
+                city
+                for city in departure_cities
                 if city.cityName.lower() == departure_city_filter.lower()
             ]
             if not filtered_cities:
-                logging.warning(f"[fetch_fare_calendar] City '{departure_city_filter}' not found for {package_id}")
+                logging.warning(
+                    f"[fetch_fare_calendar] City '{departure_city_filter}' not found for {package_id}"
+                )
                 return None
-            logging.info(f"[fetch_fare_calendar] Filtering to city: {departure_city_filter} for {package_id}")
-        
+            logging.info(
+                f"[fetch_fare_calendar] Filtering to city: {departure_city_filter} for {package_id}"
+            )
+
         # Get auth token if not provided
         if not request_id or not session_id:
             request_id, session_id = get_new_auth_token()
             if not request_id or not session_id:
-                logging.error(f"[fetch_fare_calendar] Failed to get auth token for {package_id}")
+                logging.error(
+                    f"[fetch_fare_calendar] Failed to get auth token for {package_id}"
+                )
                 return None
-        
+
         # Determine if GIT or FIT based on pkgSubtypeId
         # GIT: 1 (DOM), 3 (INT)
         # FIT: 2 (DOM), 4 (INT)
         is_git = pkg_subtype_id in [1, 3]
-        
+
         if is_git:
             return fetch_fare_calendar_git(
-                package_id, pkg_subtype_id, pkg_type_id, 
-                filtered_cities, request_id, session_id
+                package_id,
+                pkg_subtype_id,
+                pkg_type_id,
+                filtered_cities,
+                request_id,
+                session_id,
             )
         else:
             return fetch_fare_calendar_fit(
-                package_id, pkg_subtype_id, pkg_type_id,
-                request_id, session_id
+                package_id, pkg_subtype_id, pkg_type_id, request_id, session_id
             )
-    
+
     except Exception as e:
         logging.error(f"[fetch_fare_calendar] Error for {package_id}: {str(e)}")
         return None
@@ -684,7 +697,7 @@ def fetch_fare_calendar_git(
     pkg_type_id: int,
     departure_cities: List[DepartureCity],
     request_id: str,
-    session_id: str
+    session_id: str,
 ) -> Dict[str, Any]:
     """
     Fetch fare calendar for GIT packages (city-based pricing) in parallel.
@@ -693,24 +706,24 @@ def fetch_fare_calendar_git(
     headers = {
         "Requestid": request_id,
         "Sessionid": session_id,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
-    
+
     result = {
         "departureCities": [],
         "summary": {
             "totalCities": len(departure_cities),
             "availableCities": 0,
             "overallDateRange": None,
-            "priceRange": {"min": None, "max": None}
-        }
+            "priceRange": {"min": None, "max": None},
+        },
     }
-    
+
     all_min_prices = []
     all_max_prices = []
     overall_start = None
     overall_end = None
-    
+
     def fetch_city_data(city):
         """Fetch fare calendar for a single city"""
         try:
@@ -723,18 +736,20 @@ def fetch_fare_calendar_git(
                 "pkgId": package_id,
                 "mode": "TCIL",
                 "isHsa": "N",
-                "isCanvasPackage": "Y"
+                "isCanvasPackage": "Y",
             }
-            
+
             response = requests.post(url, json=payload, headers=headers, timeout=10)
             response.raise_for_status()
             data = response.json()
-            
+
             city_data = parse_git_fare_calendar_response(city, data)
             return city_data
-        
+
         except Exception as e:
-            logging.error(f"[fetch_fare_calendar_git] Error for city {city.cityName}: {str(e)}")
+            logging.error(
+                f"[fetch_fare_calendar_git] Error for city {city.cityName}: {str(e)}"
+            )
             # Return unavailable city entry
             return {
                 "cityName": city.cityName,
@@ -747,22 +762,24 @@ def fetch_fare_calendar_git(
                         "totalBookableDates": 0,
                         "totalOnRequestDates": 0,
                         "minPrice": None,
-                        "maxPrice": None
-                    }
+                        "maxPrice": None,
+                    },
                 },
-                "dates": {"bookable": [], "onRequest": []}
+                "dates": {"bookable": [], "onRequest": []},
             }
-    
+
     # Parallel execution using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=10) as executor:
         # Submit all city requests
-        future_to_city = {executor.submit(fetch_city_data, city): city for city in departure_cities}
-        
+        future_to_city = {
+            executor.submit(fetch_city_data, city): city for city in departure_cities
+        }
+
         # Collect results as they complete
         for future in as_completed(future_to_city):
             city_data = future.result()
             result["departureCities"].append(city_data)
-            
+
             if city_data["availability"]["isAvailable"]:
                 result["summary"]["availableCities"] += 1
                 stats = city_data["availability"]["stats"]
@@ -770,17 +787,17 @@ def fetch_fare_calendar_git(
                     all_min_prices.append(stats["minPrice"])
                 if stats["maxPrice"]:
                     all_max_prices.append(stats["maxPrice"])
-                
+
                 date_range = city_data["availability"]["dateRange"]
                 if date_range:
                     if not overall_start or date_range["startDate"] < overall_start:
                         overall_start = date_range["startDate"]
                     if not overall_end or date_range["endDate"] > overall_end:
                         overall_end = date_range["endDate"]
-    
+
     # Sort departureCities to maintain consistent order (by cityName)
     result["departureCities"].sort(key=lambda x: x["cityName"])
-    
+
     # Update summary
     if all_min_prices:
         result["summary"]["priceRange"]["min"] = min(all_min_prices)
@@ -789,9 +806,9 @@ def fetch_fare_calendar_git(
     if overall_start and overall_end:
         result["summary"]["overallDateRange"] = {
             "startDate": overall_start,
-            "endDate": overall_end
+            "endDate": overall_end,
         }
-    
+
     return result
 
 
@@ -800,7 +817,7 @@ def fetch_fare_calendar_fit(
     pkg_subtype_id: int,
     pkg_type_id: int,
     request_id: str,
-    session_id: str
+    session_id: str,
 ) -> Dict[str, Any]:
     """
     Fetch fare calendar for FIT packages (class-based pricing) in parallel.
@@ -810,31 +827,27 @@ def fetch_fare_calendar_fit(
     headers = {
         "Requestid": request_id,
         "Sessionid": session_id,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
-    
-    class_names = {
-        "0": "Standard",
-        "1": "Value",
-        "2": "Premium"
-    }
-    
+
+    class_names = {"0": "Standard", "1": "Value", "2": "Premium"}
+
     result = {
         "classTypes": [],
         "summary": {
             "totalClasses": 3,
             "availableClasses": 0,
             "overallDateRange": None,
-            "priceRange": {"min": None, "max": None}
+            "priceRange": {"min": None, "max": None},
         },
-        "departureCityNote": "Common pricing across all departure cities"
+        "departureCityNote": "Common pricing across all departure cities",
     }
-    
+
     all_min_prices = []
     all_max_prices = []
     overall_start = None
     overall_end = None
-    
+
     def fetch_class_data(class_id):
         """Fetch fare calendar for a single class type"""
         try:
@@ -847,18 +860,22 @@ def fetch_fare_calendar_fit(
                 "pkgId": package_id,
                 "mode": "TCIL",
                 "isHsa": "N",
-                "isCanvasPackage": "Y"
+                "isCanvasPackage": "Y",
             }
-            
+
             response = requests.post(url, json=payload, headers=headers, timeout=10)
             response.raise_for_status()
             data = response.json()
-            
-            class_data = parse_fit_fare_calendar_response(class_id, class_names[class_id], data)
+
+            class_data = parse_fit_fare_calendar_response(
+                class_id, class_names[class_id], data
+            )
             return class_data
-        
+
         except Exception as e:
-            logging.error(f"[fetch_fare_calendar_fit] Error for class {class_names[class_id]}: {str(e)}")
+            logging.error(
+                f"[fetch_fare_calendar_fit] Error for class {class_names[class_id]}: {str(e)}"
+            )
             # Return unavailable class entry
             return {
                 "className": class_names[class_id],
@@ -871,22 +888,25 @@ def fetch_fare_calendar_fit(
                         "totalOnRequestDates": 0,
                         "minPrice": None,
                         "maxPrice": None,
-                        "avgPrice": None
-                    }
+                        "avgPrice": None,
+                    },
                 },
-                "dates": {"bookable": [], "onRequest": []}
+                "dates": {"bookable": [], "onRequest": []},
             }
-    
+
     # Parallel execution using ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=3) as executor:
         # Submit all class requests
-        future_to_class = {executor.submit(fetch_class_data, class_id): class_id for class_id in ["0", "1", "2"]}
-        
+        future_to_class = {
+            executor.submit(fetch_class_data, class_id): class_id
+            for class_id in ["0", "1", "2"]
+        }
+
         # Collect results as they complete
         for future in as_completed(future_to_class):
             class_data = future.result()
             result["classTypes"].append(class_data)
-            
+
             if class_data["availability"]["isAvailable"]:
                 result["summary"]["availableClasses"] += 1
                 stats = class_data["availability"]["stats"]
@@ -894,17 +914,17 @@ def fetch_fare_calendar_fit(
                     all_min_prices.append(stats["minPrice"])
                 if stats["maxPrice"]:
                     all_max_prices.append(stats["maxPrice"])
-                
+
                 date_range = class_data["availability"]["dateRange"]
                 if date_range:
                     if not overall_start or date_range["startDate"] < overall_start:
                         overall_start = date_range["startDate"]
                     if not overall_end or date_range["endDate"] > overall_end:
                         overall_end = date_range["endDate"]
-    
+
     # Sort classTypes to maintain consistent order (by classId)
     result["classTypes"].sort(key=lambda x: x["classId"])
-    
+
     # Update summary
     if all_min_prices:
         result["summary"]["priceRange"]["min"] = min(all_min_prices)
@@ -913,142 +933,150 @@ def fetch_fare_calendar_fit(
     if overall_start and overall_end:
         result["summary"]["overallDateRange"] = {
             "startDate": overall_start,
-            "endDate": overall_end
+            "endDate": overall_end,
         }
-    
+
     return result
 
 
-def parse_git_fare_calendar_response(city: DepartureCity, response_data: Dict) -> Dict[str, Any]:
+def parse_git_fare_calendar_response(
+    city: DepartureCity, response_data: Dict
+) -> Dict[str, Any]:
     """Parse GIT fare calendar API response (ltResponseBean structure)."""
     lt_response = response_data.get("ltResponseBean", {})
     # Check both root level and ltResponseBean level for isDateAvialable
-    is_available = (response_data.get("isDateAvialable", "NO") == "YES" or 
-                   lt_response.get("isDateAvialable", "NO") == "YES")
-    
+    is_available = (
+        response_data.get("isDateAvialable", "NO") == "YES"
+        or lt_response.get("isDateAvialable", "NO") == "YES"
+    )
+
     bookable_dates = []
     on_request_dates = []
-    
+
     if is_available:
         # Parse bookable dates - API uses uppercase field names
         for date_item in lt_response.get("bookable", []):
-            bookable_dates.append({
-                "date": date_item.get("DATE", ""),
-                "price": int(date_item.get("DR_PRICE", 0)),
-                "strikeOutPrice": int(date_item.get("DR_STRIKEOUT", 0)),
-                "availableInventory": int(date_item.get("AVL_INV", 0)),
-                "lastSellDay": int(date_item.get("LAST_SELL_DAY", 0)),
-                "ltProdCode": date_item.get("LT_PROD_CODE", "")
-            })
-        
+            bookable_dates.append(
+                {
+                    "date": date_item.get("DATE", ""),
+                    "price": int(date_item.get("DR_PRICE", 0)),
+                    "strikeOutPrice": int(date_item.get("DR_STRIKEOUT", 0)),
+                    "availableInventory": int(date_item.get("AVL_INV", 0)),
+                    "lastSellDay": int(date_item.get("LAST_SELL_DAY", 0)),
+                    "ltProdCode": date_item.get("LT_PROD_CODE", ""),
+                }
+            )
+
         # Parse on-request dates
         for date_item in lt_response.get("onRequest", []):
-            on_request_dates.append({
-                "date": date_item.get("DATE", ""),
-                "ltProdCode": date_item.get("LT_PROD_CODE", "")
-            })
-    
+            on_request_dates.append(
+                {
+                    "date": date_item.get("DATE", ""),
+                    "ltProdCode": date_item.get("LT_PROD_CODE", ""),
+                }
+            )
+
     # Calculate stats
     min_price = None
     max_price = None
     start_date = None
     end_date = None
-    
+
     if bookable_dates:
         prices = [d["price"] for d in bookable_dates if d["price"] > 0]
         if prices:
             min_price = min(prices)
             max_price = max(prices)
-        
+
         start_date = bookable_dates[0]["date"]
         end_date = bookable_dates[-1]["date"]
-    
+
     return {
         "cityName": city.cityName,
         "cityCode": city.cityCode,
         "ltItineraryCode": city.ltItineraryCode,
         "availability": {
             "isAvailable": is_available,
-            "dateRange": {
-                "startDate": start_date,
-                "endDate": end_date
-            } if start_date else None,
+            "dateRange": (
+                {"startDate": start_date, "endDate": end_date} if start_date else None
+            ),
             "stats": {
                 "totalBookableDates": len(bookable_dates),
                 "totalOnRequestDates": len(on_request_dates),
                 "minPrice": min_price,
-                "maxPrice": max_price
-            }
+                "maxPrice": max_price,
+            },
         },
-        "dates": {
-            "bookable": bookable_dates,
-            "onRequest": on_request_dates
-        }
+        "dates": {"bookable": bookable_dates, "onRequest": on_request_dates},
     }
 
 
-def parse_fit_fare_calendar_response(class_id: str, class_name: str, response_data: Dict) -> Dict[str, Any]:
+def parse_fit_fare_calendar_response(
+    class_id: str, class_name: str, response_data: Dict
+) -> Dict[str, Any]:
     """Parse FIT fare calendar API response (dbResponseBean structure)."""
     db_response = response_data.get("dbResponseBean", {})
     # Check both root level and dbResponseBean level for isDateAvialable
-    is_available = (response_data.get("isDateAvialable", "NO") == "YES" or 
-                   db_response.get("isDateAvialable", "NO") == "YES")
-    
+    is_available = (
+        response_data.get("isDateAvialable", "NO") == "YES"
+        or db_response.get("isDateAvialable", "NO") == "YES"
+    )
+
     bookable_dates = []
     on_request_dates = []
-    
+
     if is_available:
         # Parse bookable dates - API uses lowercase field names for FIT
         for date_item in db_response.get("bookable", []):
-            bookable_dates.append({
-                "date": date_item.get("date", ""),
-                "price": int(date_item.get("price", 0)),
-                "strikeOutPrice": int(date_item.get("strikeOutPrice", 0))
-            })
-        
+            bookable_dates.append(
+                {
+                    "date": date_item.get("date", ""),
+                    "price": int(date_item.get("price", 0)),
+                    "strikeOutPrice": int(date_item.get("strikeOutPrice", 0)),
+                }
+            )
+
         # Parse on-request dates
         for date_item in db_response.get("onRequest", []):
-            on_request_dates.append({
-                "date": date_item.get("date", ""),
-                "price": int(date_item.get("price", 0))
-            })
-    
+            on_request_dates.append(
+                {
+                    "date": date_item.get("date", ""),
+                    "price": int(date_item.get("price", 0)),
+                }
+            )
+
     # Calculate stats
     min_price = None
     max_price = None
     avg_price = None
     start_date = None
     end_date = None
-    
+
     if bookable_dates:
         prices = [d["price"] for d in bookable_dates if d["price"] > 0]
         if prices:
             min_price = min(prices)
             max_price = max(prices)
             avg_price = sum(prices) // len(prices)
-        
+
         start_date = bookable_dates[0]["date"]
         end_date = bookable_dates[-1]["date"]
-    
+
     return {
         "className": class_name,
         "classId": class_id,
         "availability": {
             "isAvailable": is_available,
-            "dateRange": {
-                "startDate": start_date,
-                "endDate": end_date
-            } if start_date else None,
+            "dateRange": (
+                {"startDate": start_date, "endDate": end_date} if start_date else None
+            ),
             "stats": {
                 "totalBookableDates": len(bookable_dates),
                 "totalOnRequestDates": len(on_request_dates),
                 "minPrice": min_price,
                 "maxPrice": max_price,
-                "avgPrice": avg_price
-            }
+                "avgPrice": avg_price,
+            },
         },
-        "dates": {
-            "bookable": bookable_dates,
-            "onRequest": on_request_dates
-        }
+        "dates": {"bookable": bookable_dates, "onRequest": on_request_dates},
     }

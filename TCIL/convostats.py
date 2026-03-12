@@ -95,7 +95,9 @@ def extract_user_details(conversation):
 
 def any_tool_message(conversation) -> bool:
     return isinstance(conversation, list) and any(
-        isinstance(m, dict) and (m.get("role") == "tool" or m.get("role") == "function_call") for m in conversation
+        isinstance(m, dict)
+        and (m.get("role") == "tool" or m.get("role") == "function_call")
+        for m in conversation
     )
 
 
@@ -858,26 +860,18 @@ async def export_voicebot_conversations(request: DateRangeRequest):
                 stats_by_date[date_key_summary][f"{prefix}_empty"] += 1
 
             if user_msgs_after_opener == 1:
-                stats_by_date[date_key_summary][
-                    f"{prefix}_single_user_msg"
-                ] += 1
+                stats_by_date[date_key_summary][f"{prefix}_single_user_msg"] += 1
             elif user_msgs_after_opener == 2:
-                stats_by_date[date_key_summary][
-                    f"{prefix}_double_user_msg"
-                ] += 1
+                stats_by_date[date_key_summary][f"{prefix}_double_user_msg"] += 1
             elif user_msgs_after_opener == 3:
-                stats_by_date[date_key_summary][
-                    f"{prefix}_triple_user_msg"
-                ] += 1
+                stats_by_date[date_key_summary][f"{prefix}_triple_user_msg"] += 1
 
             # ---- detail row for per-day sheet ----
             user_details = extract_user_details(conversation)
             assistant_args = get_last_assistant_args(conversation)
 
             if (assistant_args["searchText"] or "").strip():
-                all_search_texts.append(
-                    assistant_args["searchText"].strip().lower()
-                )
+                all_search_texts.append(assistant_args["searchText"].strip().lower())
 
             category = "EMPTY" if is_empty else ""
 
@@ -918,9 +912,7 @@ async def export_voicebot_conversations(request: DateRangeRequest):
             empty_pct = (empty / total * 100.0) if total else 0.0
 
             # 2) Conversations → Leads % = Opportunities / Non-empty
-            conv_to_leads_pct = (
-                (opp / non_empty * 100.0) if non_empty else 0.0
-            )
+            conv_to_leads_pct = (opp / non_empty * 100.0) if non_empty else 0.0
 
             summary_data.append(
                 {
@@ -967,9 +959,7 @@ async def export_voicebot_conversations(request: DateRangeRequest):
             empty_sum / total_convos_sum * 100.0 if total_convos_sum else 0.0
         )
         overall_conv_to_leads_pct = (
-            opportunities_sum / non_empty_sum * 100.0
-            if non_empty_sum
-            else 0.0
+            opportunities_sum / non_empty_sum * 100.0 if non_empty_sum else 0.0
         )
 
         summary_stats_df = pd.DataFrame(
@@ -1022,9 +1012,7 @@ async def export_voicebot_conversations(request: DateRangeRequest):
                     index=False,
                     startrow=len(summary_df) + 2,
                 )
-                segment_df.to_excel(
-                    writer, sheet_name="Segment Summary", index=False
-                )
+                segment_df.to_excel(writer, sheet_name="Segment Summary", index=False)
                 detailed_buckets_df.to_excel(
                     writer, sheet_name="Detailed Stats", index=False
                 )
