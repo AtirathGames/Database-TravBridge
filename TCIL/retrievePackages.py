@@ -768,6 +768,126 @@ async def get_countries_by_theme(
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 
+@router.get("/v1/get_all_packages")
+async def get_all_packages():
+    """
+    Retrieve ALL packages from the index with minimal details.
+    
+    Returns for each package:
+    - packageId
+    - packageName
+    - availableMonths
+    - packageTheme
+    - aliasCityName (extracted from cities array)
+    - days
+    - isFlightIncluded
+    - pkgSubtypeName
+    
+    Uses Elasticsearch scroll for efficient retrieval of large result sets.
+    """
+    try:
+        ensure_index_exists(TCIL_PACKAGE_INDEX)
+
+        # Initial search with scroll to get all packages
+        search_body = {
+            "query": {"match_all": {}},
+            "size": 500,  # batch size per scroll page
+            "_source": [
+                "packageId",
+                "packageName",
+                "availableMonths",
+                "packageTheme",
+                "cities",
+                "days",
+                "isFlightIncluded",
+                "pkgSubtypeName",
+            ],
+            "track_total_hits": True,
+        }
+
+        results = []
+
+        # Initial search with scroll
+        response = es.search(index=TCIL_PACKAGE_INDEX, body=search_body, scroll="2m")
+
+        scroll_id = response.get("_scroll_id")
+        hits = response.get("hits", {}).get("hits", [])
+        total_packages = response.get("hits", {}).get("total", {}).get("value", 0)
+
+        logging.info(
+            f"[get_all_packages] Starting scroll retrieval. Total packages: {total_packages}"
+        )
+
+        def extract_alias_city_name(cities: List[Dict]) -> str:
+            """Extract aliasCityName from cities array. Returns first city's alias or empty string."""
+            if cities and len(cities) > 0:
+                return cities[0].get("aliasCityName", "")
+            return ""
+
+        def format_package_minimal(hit) -> Dict[str, Any]:
+            """Format a package document into minimal details."""
+            source = hit["_source"]
+            cities = source.get("cities", [])
+
+            return {
+                "packageId": source.get("packageId"),
+                "packageName": source.get("packageName"),
+                "availableMonths": source.get("availableMonths", []),
+                "packageTheme": source.get("packageTheme", []),
+                "aliasCityName": extract_alias_city_name(cities),
+                "days": source.get("days"),
+                "isFlightIncluded": source.get("isFlightIncluded", "N"),
+                "pkgSubtypeName": source.get("pkgSubtypeName", ""),
+            }
+
+        # Process first page
+        for hit in hits:
+            results.append(format_package_minimal(hit))
+
+        # Scroll through remaining pages
+        while True:
+            if not hits:
+                break
+            response = es.scroll(scroll_id=scroll_id, scroll="2m")
+            scroll_id = response.get("_scroll_id")
+            hits = response.get("hits", {}).get("hits", [])
+            if not hits:
+                break
+            for hit in hits:
+                results.append(format_package_minimal(hit))
+
+        # Clear scroll context (best-effort)
+        try:
+            if scroll_id:
+                es.clear_scroll(scroll_id=scroll_id)
+        except Exception as e:
+            logging.warning(f"[get_all_packages] Could not clear scroll: {str(e)}")
+
+        logging.info(
+            f"[get_all_packages] Successfully retrieved {len(results)} packages"
+        )
+
+        return JSONResponse(
+            status_code=200,
+            content={
+                "code": 200,
+                "message": f"Retrieved {len(results)} packages",
+                "total": len(results),
+                "packages": results,
+            },
+        )
+
+    except RequestError as e:
+        logging.error(f"[get_all_packages] Request error: {str(e)}")
+        raise HTTPException(status_code=400, detail="Request error")
+    except TransportError as e:
+        logging.error(f"[get_all_packages] Elasticsearch transport error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Elasticsearch transport error")
+    except Exception as e:
+        logging.error(f"[get_all_packages] Internal Server Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
+
+
 @router.get("/v1/get_all_BOGO_packages", response_model=List[ItemOut])
 async def get_all_bogo_packages():
     """

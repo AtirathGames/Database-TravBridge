@@ -35,6 +35,7 @@ TCIL_RAW_INDEX = "tcildatav1_raw"
 VISA_INDEX = "visa_faq"
 CHAT_INDEX_NAME = "user_conversations"
 TCIL_CAMPAIGN_INDEX = "tcil_campaigns"
+BUG_INDEX_NAME = "tcilbugindex"
 DESTINATIONS_FAQ_INDEX = "destinations_faq"
 ALL_UNIQUE_DESTINATIONS_INDEX = "all_unique_destinations"
 MAX_RETRIES = 3  # Number of retries for failed requests

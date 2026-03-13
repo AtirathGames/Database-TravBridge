@@ -19,8 +19,9 @@ from NewESmapping import (
     conversation_index_mapping,
     visa_faq_mapping,
     package_index_mapping,
+    bug_index_mapping,
 )
-from constants import production, VISA_INDEX, SOTC_PACKAGE_INDEX, es
+from constants import production, VISA_INDEX, SOTC_PACKAGE_INDEX, es, SOTC_BUG_INDEX_NAME
 from models import ItemOut, savedItineraryData, DepartureCity
 import json, requests
 from typing import Dict, List, Optional, Union, Any, Tuple
@@ -128,6 +129,24 @@ logging.basicConfig(
 def create_visa_faq_index():
     if not es.indices.exists(index=VISA_INDEX):
         es.indices.create(index=VISA_INDEX, body=visa_faq_mapping)
+
+
+def create_bug_report_index():
+    """
+    Create the bug reporting index if it doesn't exist.
+    Called during application startup.
+    """
+    try:
+        if not es.indices.exists(index=SOTC_BUG_INDEX_NAME):
+            es.indices.create(
+                index=SOTC_BUG_INDEX_NAME,
+                mappings=bug_index_mapping
+            )
+            logging.info(f"Bug index '{SOTC_BUG_INDEX_NAME}' created successfully.")
+        else:
+            logging.info(f"Bug index '{SOTC_BUG_INDEX_NAME}' already exists.")
+    except Exception as e:
+        logging.error(f"Error creating bug index: {str(e)}")
 
 
 def get_new_auth_token() -> Tuple[str, str]:

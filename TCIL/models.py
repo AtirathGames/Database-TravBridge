@@ -224,9 +224,55 @@ class DateRangeRequest(BaseModel):
     from_date: str  # YYYY-MM-DD
     to_date: str    # YYYY-MM-DD
 
-from pydantic import BaseModel, Field
-from typing import List
 
 class CampaignCreateRequest(BaseModel):
     campaignId: str  = Field(..., example="c00001")
     packageIds: List[str] = Field(..., example=["12345","2345","5678","5679"])
+
+
+# -----------------------------------------------------------------------
+# Bug Reporting Models
+# -----------------------------------------------------------------------
+
+class IssueData(BaseModel):
+    issue_type: str  # e.g., "bug", "error", "performance", "ui"
+    tool_name: Optional[str] = None
+    description: str
+    reported_by: str
+    reported_at: Optional[datetime] = None
+
+
+class ToolUsageData(BaseModel):
+    is_tool_open: bool
+    open_time: Optional[datetime] = None
+
+
+class CardUsageData(BaseModel):
+    card_name: str
+    click_count: int = 1
+
+
+class BugReportRequest(BaseModel):
+    conversationId: str
+    userId: str
+    customerId: Optional[str] = None
+    agent_id: Optional[str] = None
+    chat_name: Optional[str] = None
+    chat_model_name: Optional[str] = None
+    chat_model_version: Optional[str] = None
+    chat_channel: Optional[str] = None
+    chat_status: Optional[str] = None
+    issue: Optional[IssueData] = None
+    tool_usage: Optional[List[ToolUsageData]] = None
+    card_usage: Optional[List[CardUsageData]] = None
+
+
+class BugReportFilterRequest(BaseModel):
+    agent_id: Optional[str] = None
+    conversation_id: Optional[str] = None
+    issue_type: Optional[str] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    limit: int = 100
+    page: Optional[int] = None
+    count: Optional[int] = None

@@ -168,3 +168,43 @@ visa_faq_mapping = {
         }
     }
 }
+# Bug Report Index Mapping
+bug_index_mapping = {
+    "properties": {
+        "conversationId": {"type": "keyword"},
+        "userId": {"type": "keyword"},
+        "customerId": {"type": "keyword"},
+        "agent_id": {"type": "keyword"},
+        "chat_name": {"type": "keyword"},
+        "chat_started": {"type": "date"},
+        "chat_modified": {"type": "date"},
+        "chat_model_name": {"type": "keyword"},
+        "chat_model_version": {"type": "keyword"},
+        "chat_channel": {"type": "keyword"},
+        "chat_status": {"type": "keyword"},
+        "issue": {
+            "properties": {
+                "issue_type": {"type": "keyword"},
+                "tool_name": {"type": "keyword"},
+                "description": {"type": "text"},
+                "reported_by": {"type": "keyword"},
+                "reported_at": {"type": "date"},
+            }
+        },
+        "tool_usage": {
+            "type": "nested",
+            "properties": {
+                "is_tool_open": {"type": "boolean"},
+                "open_time": {"type": "date"},
+            },
+        },
+        "card_usage": {
+            "type": "nested",
+            "properties": {
+                "card_name": {"type": "keyword"},
+                "click_count": {"type": "integer"},
+            },
+        },
+        "timestamp": {"type": "date"},
+    }
+}

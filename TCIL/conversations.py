@@ -18,18 +18,27 @@ from models import (
     FilterRequest,
     ExportFilterRequest,
     DateRangeRequest,
+    BugReportRequest,
+    BugReportFilterRequest,
+    IssueData,
 )
 from typing import Dict, List, Optional, Union, Any
-from constants import CHAT_INDEX_NAME, es, TCIL_PACKAGE_INDEX
+from constants import CHAT_INDEX_NAME, es, TCIL_PACKAGE_INDEX,BUG_INDEX_NAME
 from services import ensure_index_exists
 from datetime import datetime
-from NewESmapping import conversation_index_mapping
+from NewESmapping import conversation_index_mapping,bug_index_mapping
 import logging
 import json, requests
 from dateutil.parser import parse as parse_date
 import pandas as pd
 from io import BytesIO
 from collections import defaultdict
+
+# -----------------------------------------------------------------------
+# Bug Report Index Configuration
+# -----------------------------------------------------------------------
+
+
 
 router = APIRouter()
 
@@ -802,3 +811,316 @@ def export_conversation_summary(request: DateRangeRequest):
         raise HTTPException(
             status_code=500, detail=f"Error processing request: {str(e)}"
         )
+
+
+# =========================================================================
+# BUG REPORTING ENDPOINTS
+# =========================================================================
+
+def create_bug_index():
+    """
+    Create the bug reporting index if it doesn't already exist.
+    Called during application startup.
+    """
+    try:
+        if not es.indices.exists(index=BUG_INDEX_NAME):
+            es.indices.create(
+                index=BUG_INDEX_NAME,
+                mappings=bug_index_mapping
+            )
+            logging.info(f"Bug index '{BUG_INDEX_NAME}' created successfully.")
+        else:
+            logging.info(f"Bug index '{BUG_INDEX_NAME}' already exists.")
+    except Exception as e:
+        logging.error(f"Error creating bug index: {str(e)}")
+
+
+@router.post("/v1/report_bug")
+def report_bug(bug_data: BugReportRequest):
+    """
+    Save a bug report to Elasticsearch.
+    - Automatically sets timestamp
+    - Auto-sets reported_at if issue exists
+    """
+    try:
+        # Ensure bug index exists
+        if not es.indices.exists(index=BUG_INDEX_NAME):
+            create_bug_index()
+
+        # Convert request model to dict
+        doc = bug_data.dict(exclude_unset=True)
+
+        # ✅ Auto-set timestamp
+        doc["timestamp"] = datetime.utcnow().isoformat()
+
+        # ✅ Auto-set reported_at if issue exists
+        if "issue" in doc and doc["issue"]:
+            if "reported_at" not in doc["issue"] or not doc["issue"]["reported_at"]:
+                doc["issue"]["reported_at"] = datetime.utcnow().isoformat()
+
+        # Save to Elasticsearch
+        response = es.index(
+            index=BUG_INDEX_NAME,
+            document=doc
+        )
+
+        logging.info(f"Bug report saved successfully with ID: {response['_id']}")
+        return {
+            "status": "success",
+            "message": "Bug report saved successfully",
+            "document_id": response["_id"]
+        }
+
+    except Exception as e:
+        logging.error(f"Error saving bug report: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/v1/get_bug_logs")
+def get_bug_logs(filters: BugReportFilterRequest = Body(default=BugReportFilterRequest())):
+    """
+    Retrieve bug logs with optional filters and merge results by conversationId.
+    
+    Filters supported:
+    - agent_id: Filter by agent
+    - conversation_id: Filter by conversation
+    - issue_type: Filter by issue type
+    - start_date / end_date: Date range filter (ISO format)
+    - limit: Maximum results (default 100)
+    """
+    try:
+        if not es.indices.exists(index=BUG_INDEX_NAME):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Bug index '{BUG_INDEX_NAME}' not found."
+            )
+
+        # Build filter clauses
+        filter_clauses = []
+
+        if filters.agent_id:
+            filter_clauses.append({"term": {"agent_id": filters.agent_id}})
+
+        if filters.conversation_id:
+            filter_clauses.append({"term": {"conversationId": filters.conversation_id}})
+
+        if filters.issue_type:
+            filter_clauses.append({"term": {"issue.issue_type": filters.issue_type}})
+
+        if filters.start_date and filters.end_date:
+            filter_clauses.append({
+                "range": {
+                    "timestamp": {
+                        "gte": filters.start_date,
+                        "lte": filters.end_date
+                    }
+                }
+            })
+
+        # Build query
+        query = {
+            "bool": {"filter": filter_clauses}
+        } if filter_clauses else {"match_all": {}}
+
+        # Execute search
+        search_body = {
+            "query": query,
+            "size": filters.limit or 100,
+            "sort": [{"timestamp": {"order": "desc"}}]
+        }
+
+        response = es.search(index=BUG_INDEX_NAME, body=search_body)
+        docs = [hit["_source"] for hit in response["hits"]["hits"]]
+
+        # ✅ Merge results by conversationId
+        merged = _merge_bug_reports(docs)
+
+        return {
+            "status": "success",
+            "total": len(docs),
+            "merged_conversations": len(merged),
+            "results": list(merged.values())
+        }
+
+    except Exception as e:
+        logging.error(f"Error retrieving bug logs: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+def _merge_bug_reports(docs: List[Dict]) -> Dict[str, Dict]:
+    """
+    Merge bug report documents by conversationId.
+    Aggregates issues, tool_usage, and card_usage across multiple documents.
+    """
+    merged = {}
+
+    for doc in docs:
+        cid = doc.get("conversationId", "unknown")
+
+        if cid not in merged:
+            merged[cid] = {
+                "conversationId": cid,
+                "agent_id": doc.get("agent_id"),
+                "userId": doc.get("userId"),
+                "customerId": doc.get("customerId"),
+                "chat_name": doc.get("chat_name"),
+                "chat_channel": doc.get("chat_channel"),
+                "chat_status": doc.get("chat_status"),
+                "issues": [],
+                "tool_usage": [],
+                "card_usage": {}
+            }
+
+        # ✅ Collect issues
+        if "issue" in doc and doc["issue"]:
+            merged[cid]["issues"].append(doc["issue"])
+
+        # ✅ Collect tool usage
+        if "tool_usage" in doc and doc["tool_usage"]:
+            if isinstance(doc["tool_usage"], list):
+                merged[cid]["tool_usage"].extend(doc["tool_usage"])
+            else:
+                merged[cid]["tool_usage"].append(doc["tool_usage"])
+
+        # ✅ Merge card clicks
+        if "card_usage" in doc and doc["card_usage"]:
+            cards = doc["card_usage"] if isinstance(doc["card_usage"], list) else [doc["card_usage"]]
+            for card in cards:
+                card_name = card.get("card_name")
+                if card_name:
+                    if card_name not in merged[cid]["card_usage"]:
+                        merged[cid]["card_usage"][card_name] = 0
+                    merged[cid]["card_usage"][card_name] += card.get("click_count", 1)
+
+    # Convert card_usage dict → list
+    for cid in merged:
+        merged[cid]["card_usage"] = [
+            {"card_name": k, "click_count": v}
+            for k, v in merged[cid]["card_usage"].items()
+        ]
+
+    return merged
+
+
+@router.get("/v1/bug_logs_by_conversation/{conversation_id}")
+def get_bug_logs_by_conversation(conversation_id: str):
+    """
+    Retrieve all bug reports for a specific conversation.
+    """
+    try:
+        if not es.indices.exists(index=BUG_INDEX_NAME):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Bug index '{BUG_INDEX_NAME}' not found."
+            )
+
+        search_body = {
+            "query": {"term": {"conversationId": conversation_id}},
+            "size": 1000,
+            "sort": [{"timestamp": {"order": "desc"}}]
+        }
+
+        response = es.search(index=BUG_INDEX_NAME, body=search_body)
+        docs = [hit["_source"] for hit in response["hits"]["hits"]]
+
+        if not docs:
+            return {
+                "status": "not_found",
+                "message": f"No bug reports found for conversation {conversation_id}",
+                "results": []
+            }
+
+        # Merge results
+        merged = _merge_bug_reports(docs)
+
+        return {
+            "status": "success",
+            "total": len(docs),
+            "conversation_id": conversation_id,
+            "results": list(merged.values())
+        }
+
+    except Exception as e:
+        logging.error(f"Error retrieving bug logs for conversation {conversation_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/v1/bug_analytics")
+def get_bug_analytics(filters: BugReportFilterRequest = Body(default=BugReportFilterRequest())):
+    """
+    Get aggregated bug analytics for a given date range.
+    Returns:
+    - Total issues by type
+    - Most affected conversations
+    - Tool usage patterns
+    - Card interaction metrics
+    """
+    try:
+        if not es.indices.exists(index=BUG_INDEX_NAME):
+            raise HTTPException(
+                status_code=404,
+                detail=f"Bug index '{BUG_INDEX_NAME}' not found."
+            )
+
+        # Build aggregation query
+        agg_query = {
+            "query": {"match_all": {}},
+            "size": 0,
+            "aggs": {
+                "issue_types": {
+                    "terms": {
+                        "field": "issue.issue_type",
+                        "size": 100
+                    }
+                },
+                "tool_names": {
+                    "terms": {
+                        "field": "issue.tool_name",
+                        "size": 100
+                    }
+                },
+                "conversations_with_issues": {
+                    "terms": {
+                        "field": "conversationId",
+                        "size": 100
+                    }
+                }
+            }
+        }
+
+        # Add date range if provided
+        if filters.start_date and filters.end_date:
+            agg_query["query"] = {
+                "range": {
+                    "timestamp": {
+                        "gte": filters.start_date,
+                        "lte": filters.end_date
+                    }
+                }
+            }
+
+        response = es.search(index=BUG_INDEX_NAME, body=agg_query)
+        aggregations = response.get("aggregations", {})
+
+        return {
+            "status": "success",
+            "total_hits": response["hits"]["total"]["value"],
+            "analytics": {
+                "issue_types": [
+                    {"type": bucket["key"], "count": bucket["doc_count"]}
+                    for bucket in aggregations.get("issue_types", {}).get("buckets", [])
+                ],
+                "tools_affected": [
+                    {"tool": bucket["key"], "count": bucket["doc_count"]}
+                    for bucket in aggregations.get("tool_names", {}).get("buckets", [])
+                ],
+                "conversations_affected": [
+                    {"conversation_id": bucket["key"], "issue_count": bucket["doc_count"]}
+                    for bucket in aggregations.get("conversations_with_issues", {}).get("buckets", [])
+                ]
+            }
+        }
+
+    except Exception as e:
+        logging.error(f"Error retrieving bug analytics: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

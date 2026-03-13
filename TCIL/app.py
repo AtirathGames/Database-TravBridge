@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 import logging
 
 # Internal imports
-from services import setup_logging, create_visa_faq_index
+from services import setup_logging, create_visa_faq_index, create_bug_report_index
 from constants import uvicorn_host, uvicorn_port
 import conversations
 import batchprocessing
@@ -25,6 +25,7 @@ setup_logging()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_visa_faq_index()
+    create_bug_report_index()
     await schedule_daily_job()
     yield  # App will run here
     # Add any shutdown/cleanup logic here if needed

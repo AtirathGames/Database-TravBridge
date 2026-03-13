@@ -38,6 +38,7 @@ SOTC_PACKAGE_INDEX = "sotcdatav1"
 SOTC_RAW_INDEX = "sotcdatav1_raw"
 VISA_INDEX = "visa_faq"
 SOTC_CHAT_INDEX_NAME = "sotc_user_conversations"
+SOTC_BUG_INDEX_NAME = "sotcbugindex"
 
 MAX_RETRIES = 3  # Number of retries for failed requests
 TIMEOUT = 120  # Increase timeout to 120 seconds
